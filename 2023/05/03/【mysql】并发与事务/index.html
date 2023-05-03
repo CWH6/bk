@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>【mysql】并发与事务 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="事务（Transaction）及其 ACID属性事务是由一组SQL语句组成的逻辑处理单元，事务具有以下4个属性，通常简称为事务的ACID属性 原子性（Atomicity）:事务是一个原子操作单元，对其数据的修改，要么全都执行，要么全都不执行 一致性（Consistent）: 在事务开始和完成时，数据必须保持一致状态。这意味着所有相关的数据都必须应用于事务的修改，以保持数据的 完整性；事务结束时，所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【mysql】并发与事务">
+<meta property="og:url" content="https://gitee.com/CWH6/2023/05/03/%E3%80%90mysql%E3%80%91%E5%B9%B6%E5%8F%91%E4%B8%8E%E4%BA%8B%E5%8A%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="事务（Transaction）及其 ACID属性事务是由一组SQL语句组成的逻辑处理单元，事务具有以下4个属性，通常简称为事务的ACID属性 原子性（Atomicity）:事务是一个原子操作单元，对其数据的修改，要么全都执行，要么全都不执行 一致性（Consistent）: 在事务开始和完成时，数据必须保持一致状态。这意味着所有相关的数据都必须应用于事务的修改，以保持数据的 完整性；事务结束时，所">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20230501211344845.png">
+<meta property="article:published_time" content="2023-05-03T06:06:17.000Z">
+<meta property="article:modified_time" content="2023-05-03T06:17:12.256Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20230501211344845.png">
+  
+    <link rel="alternate" href="/bk/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/bk/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/bk/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/bk/">Home</a>
+        
+          <a class="main-nav-link" href="/bk/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/bk/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://gitee.com/CWH6"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-【mysql】并发与事务" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/bk/2023/05/03/%E3%80%90mysql%E3%80%91%E5%B9%B6%E5%8F%91%E4%B8%8E%E4%BA%8B%E5%8A%A1/" class="article-date">
+  <time datetime="2023-05-03T06:06:17.000Z" itemprop="datePublished">2023-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【mysql】并发与事务
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="事务（Transaction）及其-ACID属性"><a href="#事务（Transaction）及其-ACID属性" class="headerlink" title="事务（Transaction）及其 ACID属性"></a>事务（Transaction）及其 ACID属性</h3><p>事务是由一组SQL语句组成的逻辑处理单元，事务具有以下4个属性，通常简称为事务的ACID属性</p>
+<p><strong>原子性（Atomicity）</strong>:事务是一个原子操作单元，对其数据的修改，要么全都执行，要么全都不执行</p>
+<p><strong>一致性（Consistent）</strong>: 在事务开始和完成时，数据必须保持一致状态。这意味着所有相关的数据都必须应用于事务的修改，以保持数据的</p>
+<p>完整性；事务结束时，所有内部数据结构（如B树索引或双向链表）也都必须是正确的</p>
+<p>也都必须是正确的</p>
+<p><strong>隔离性(lsolation)</strong>: 数据库系统提供一定的隔离机制，保证事务在不受外部并发操作影响的“独立”环境执行。这意味着事务处</p>
+<p>理过程中的中间状态对外部是不可见的，反之亦然。</p>
+<p>**持久性(Durable) **: 事务完成之后，它对于数据的修改是永久性的，即使出现系统故障也能够保持</p>
+<h3 id="并发事务处理带来的问题"><a href="#并发事务处理带来的问题" class="headerlink" title="并发事务处理带来的问题"></a>并发事务处理带来的问题</h3><ul>
+<li><strong>更新丢失(Lost Update)</strong></li>
+</ul>
+<p>当两个或多个事务选择同一行，然后基于最初选定的值更新该行时，由于每个事务都不知道其他事务的存在，就会发生丢失更新问题一一最后的更新覆盖了由其他事务所做的更新。</p>
+<p>例如，两个程序员修改同一iava文件。每程序员独立地更改其副本，然后保存更改后的副本，这样就覆盖了原始文档。最后保存其更改副本的编辑人员覆盖前一个程序员所做的更改。如果在一个程序员完成并提交事务之前，另一个程序员不能访问同一文件，则可避免此问题。</p>
+<ul>
+<li><strong>脏读(Dirty Reads)</strong></li>
+</ul>
+<p>一个事务正在对一条记录做修改，在这个事务完成并提交前，这条记录的数据就处于不一致状态:这时，另一个事务也来读取同-条记录，如果不加控制，第二个事务读取了这些“脏”数据，并据此做进一步的处理，就会产生未提交的数据依赖关系。这种现象<br>被形象地叫做”脏读”。<br>一言以蔽之:事务读取到了事务B已修改但尚未提交的的数据，还在这个数据基础上做了操作。此时，如果B事务回滚，A读取的数据无效，不符合一致性要求。</p>
+<ul>
+<li><strong>不可重复读(Non-Repeatable Reads)</strong></li>
+</ul>
+<p>-个事务在速取某些数据后的某个时间，再次读取以前读过的数据，却发现其读出的数据已经发生了改变、或某些记录已经被删除了!这种现象就叫做“不可重复读”<br>一言以蔽之:事务A读取到了事务B已经提交的修改数据，不符合隔离性</p>
+<ul>
+<li><strong>幻读(Phantom Reads）</strong></li>
+</ul>
+<p>一个事务按相同的查询条件重新读取以前检索过的数据，却发现其他事务插入了满足其查询条件的新数据，这种现象就称为“幻读“</p>
+<p>一句话:事务A读取到了事务B提交的新增数据，不符合隔离性</p>
+<p>多说一句:幻读和脏读有点类似，不可重复读是事务B里面修改了数据，幻读是事务B里面新增了数据</p>
+<h3 id="数据库的隔离级别"><a href="#数据库的隔离级别" class="headerlink" title="数据库的隔离级别"></a>数据库的隔离级别</h3><p>脏读”、“不可重复读”和“幻读”，其实都是数据库读一致性问题，必须由数据库提供一定的事务隔离机制来解决</p>
+<p><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20230501211344845.png"></p>
+<p>数据库的事务隔离越严格，并发副作用越小，但付出的代价也就越大，因为事务隔离实质上就是使事务在一定程度上“串行化”进行，这显然</p>
+<p>与“并发”是矛盾的。同时，不同的应用对读一致性和事务隔离程度的要求也是不同的，比如许多应用对“不可重复读</p>
+<p>和“幻读”并不敏感，可能更关心数据并发访问的能力。</p>
+<p>查看当前数据库的事务隔离级别：（数据库的默认隔离级别为可重复读）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span><span class="string">&#x27;tx isolation&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://gitee.com/CWH6/2023/05/03/%E3%80%90mysql%E3%80%91%E5%B9%B6%E5%8F%91%E4%B8%8E%E4%BA%8B%E5%8A%A1/" data-id="clh7b3ejm000118puc6bz5imi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/bk/2023/05/03/Redis%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%81%E8%A3%85%E4%B8%8E%E8%A7%A3%E5%86%B3%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【Redis】工具类封装与解决缓存击穿，缓存穿透</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/bk/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/bk/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/bk/2023/05/03/%E3%80%90mysql%E3%80%91%E5%B9%B6%E5%8F%91%E4%B8%8E%E4%BA%8B%E5%8A%A1/">【mysql】并发与事务</a>
+          </li>
+        
+          <li>
+            <a href="/bk/2023/05/03/Redis%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%81%E8%A3%85%E4%B8%8E%E8%A7%A3%E5%86%B3%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">【Redis】工具类封装与解决缓存击穿，缓存穿透</a>
+          </li>
+        
+          <li>
+            <a href="/bk/2023/04/24/%E6%A0%87%E9%A2%98/">标题</a>
+          </li>
+        
+          <li>
+            <a href="/bk/2023/04/24/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/bk/" class="mobile-nav-link">Home</a>
+  
+    <a href="/bk/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/bk/fancybox/jquery.fancybox.css">
+
+  
+<script src="/bk/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/bk/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
