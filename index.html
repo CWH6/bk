@@ -1,359 +1,207 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-
-  
-  <title>ChenWeiHui&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ChenWeiHui&#39;s Blog">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ChenWeiHui's Blog</title><meta name="author" content="cwh"><meta name="copyright" content="cwh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="ChenWeiHui's Blog">
 <meta property="og:url" content="https://gitee.com/CWH6/index.html">
-<meta property="og:site_name" content="ChenWeiHui&#39;s Blog">
+<meta property="og:site_name" content="ChenWeiHui's Blog">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="cwh">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/bk/atom.xml" title="ChenWeiHui&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/bk/css/style.css">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/bk/img/favicon.png"><link rel="canonical" href="https://gitee.com/CWH6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/bk/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/bk/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ChenWeiHui\'s Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-03 18:15:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-<meta name="generator" content="Hexo 5.4.2"></head>
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/bk/" id="logo">ChenWeiHui&#39;s Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-          <a class="main-nav-link" href="/bk/">Home</a>
-        
-          <a class="main-nav-link" href="/bk/tags">Tags</a>
-        
-          <a class="main-nav-link" href="/bk/archives">Archives</a>
-        
-          <a class="main-nav-link" href="/bk/categories">Categories</a>
-        
-          <a class="main-nav-link" href="/bk/about">About</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/bk/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://gitee.com/CWH6"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-【mysql】并发与事务" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/bk/2023/05/03/%E3%80%90mysql%E3%80%91%E5%B9%B6%E5%8F%91%E4%B8%8E%E4%BA%8B%E5%8A%A1/" class="article-date">
-  <time datetime="2023-05-03T06:06:17.000Z" itemprop="datePublished">2023-05-03</time>
-</a>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-  </div>
-  <div class="article-inner">
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/modify.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/bk/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/bk/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/bk/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background: transparent"><nav id="nav"><span id="blog-info"><a href="/bk/" title="ChenWeiHui's Blog"><span class="site-name">ChenWeiHui's Blog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">ChenWeiHui's Blog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/bk/2023/05/03/%E3%80%90mysql%E3%80%91%E5%B9%B6%E5%8F%91%E4%B8%8E%E4%BA%8B%E5%8A%A1/" title="【mysql】并发与事务">【mysql】并发与事务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-03T06:06:17.000Z" title="Created 2023-05-03 14:06:17">2023-05-03</time></span></div><div class="content">事务（Transaction）及其 ACID属性事务是由一组SQL语句组成的逻辑处理单元，事务具有以下4个属性，通常简称为事务的ACID属性
+原子性（Atomicity）:事务是一个原子操作单元，对其数据的修改，要么全都执行，要么全都不执行
+一致性（Consistent）: 在事务开始和完成时，数据必须保持一致状态。这意味着所有相关的数据都必须应用于事务的修改，以保持数据的
+完整性；事务结束时，所有内部数据结构（如B树索引或双向链表）也都必须是正确的
+也都必须是正确的
+隔离性(lsolation): 数据库系统提供一定的隔离机制，保证事务在不受外部并发操作影响的“独立”环境执行。这意味着事务处
+理过程中的中间状态对外部是不可见的，反之亦然。
+**持久性(Durable) **: 事务完成之后，它对于数据的修改是永久性的，即使出现系统故障也能够保持
+并发事务处理带来的问题
+更新丢失(Lost Update)
+
+当两个或多个事务选择同一行，然后基于最初选定的值更新该行时，由于每个事务都不知道其他事务的存在，就会发生丢失更新问题一一最后的更新覆盖了由其他事务所做的更新。
+例如，两个程序员修改 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/bk/2023/05/03/Redis%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%81%E8%A3%85%E4%B8%8E%E8%A7%A3%E5%86%B3%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" title="【Redis】工具类封装与解决缓存击穿，缓存穿透">【Redis】工具类封装与解决缓存击穿，缓存穿透</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-03T03:10:29.000Z" title="Created 2023-05-03 11:10:29">2023-05-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/bk/categories/Redis/">Redis</a></span></div><div class="content">工具类@slf4j
+@Component
+public class CacheClient {
     
+    private final StringRedisTemplate stringRedisTemplate;
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/bk/2023/05/03/%E3%80%90mysql%E3%80%91%E5%B9%B6%E5%8F%91%E4%B8%8E%E4%BA%8B%E5%8A%A1/">【mysql】并发与事务</a>
-    </h1>
-  
-
-      </header>
+    public CacheClient(StringRedisTemplate stringRedisTemplate) {
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="事务（Transaction）及其-ACID属性"><a href="#事务（Transaction）及其-ACID属性" class="headerlink" title="事务（Transaction）及其 ACID属性"></a>事务（Transaction）及其 ACID属性</h3><p>事务是由一组SQL语句组成的逻辑处理单元，事务具有以下4个属性，通常简称为事务的ACID属性</p>
-<p><strong>原子性（Atomicity）</strong>:事务是一个原子操作单元，对其数据的修改，要么全都执行，要么全都不执行</p>
-<p><strong>一致性（Consistent）</strong>: 在事务开始和完成时，数据必须保持一致状态。这意味着所有相关的数据都必须应用于事务的修改，以保持数据的</p>
-<p>完整性；事务结束时，所有内部数据结构（如B树索引或双向链表）也都必须是正确的</p>
-<p>也都必须是正确的</p>
-<p><strong>隔离性(lsolation)</strong>: 数据库系统提供一定的隔离机制，保证事务在不受外部并发操作影响的“独立”环境执行。这意味着事务处</p>
-<p>理过程中的中间状态对外部是不可见的，反之亦然。</p>
-<p>**持久性(Durable) **: 事务完成之后，它对于数据的修改是永久性的，即使出现系统故障也能够保持</p>
-<h3 id="并发事务处理带来的问题"><a href="#并发事务处理带来的问题" class="headerlink" title="并发事务处理带来的问题"></a>并发事务处理带来的问题</h3><ul>
-<li><strong>更新丢失(Lost Update)</strong></li>
-</ul>
-<p>当两个或多个事务选择同一行，然后基于最初选定的值更新该行时，由于每个事务都不知道其他事务的存在，就会发生丢失更新问题一一最后的更新覆盖了由其他事务所做的更新。</p>
-<p>例如，两个程序员修改同一iava文件。每程序员独立地更改其副本，然后保存更改后的副本，这样就覆盖了原始文档。最后保存其更改副本的编辑人员覆盖前一个程序员所做的更改。如果在一个程序员完成并提交事务之前，另一个程序员不能访问同一文件，则可避免此问题。</p>
-<ul>
-<li><strong>脏读(Dirty Reads)</strong></li>
-</ul>
-<p>一个事务正在对一条记录做修改，在这个事务完成并提交前，这条记录的数据就处于不一致状态:这时，另一个事务也来读取同-条记录，如果不加控制，第二个事务读取了这些“脏”数据，并据此做进一步的处理，就会产生未提交的数据依赖关系。这种现象<br>被形象地叫做”脏读”。<br>一言以蔽之:事务读取到了事务B已修改但尚未提交的的数据，还在这个数据基础上做了操作。此时，如果B事务回滚，A读取的数据无效，不符合一致性要求。</p>
-<ul>
-<li><strong>不可重复读(Non-Repeatable Reads)</strong></li>
-</ul>
-<p>-个事务在速取某些数据后的某个时间，再次读取以前读过的数据，却发现其读出的数据已经发生了改变、或某些记录已经被删除了!这种现象就叫做“不可重复读”<br>一言以蔽之:事务A读取到了事务B已经提交的修改数据，不符合隔离性</p>
-<ul>
-<li><strong>幻读(Phantom Reads）</strong></li>
-</ul>
-<p>一个事务按相同的查询条件重新读取以前检索过的数据，却发现其他事务插入了满足其查询条件的新数据，这种现象就称为“幻读“</p>
-<p>一句话:事务A读取到了事务B提交的新增数据，不符合隔离性</p>
-<p>多说一句:幻读和脏读有点类似，不可重复读是事务B里面修改了数据，幻读是事务B里面新增了数据</p>
-<h3 id="数据库的隔离级别"><a href="#数据库的隔离级别" class="headerlink" title="数据库的隔离级别"></a>数据库的隔离级别</h3><p>脏读”、“不可重复读”和“幻读”，其实都是数据库读一致性问题，必须由数据库提供一定的事务隔离机制来解决</p>
-<p><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20230501211344845.png"></p>
-<p>数据库的事务隔离越严格，并发副作用越小，但付出的代价也就越大，因为事务隔离实质上就是使事务在一定程度上“串行化”进行，这显然</p>
-<p>与“并发”是矛盾的。同时，不同的应用对读一致性和事务隔离程度的要求也是不同的，比如许多应用对“不可重复读</p>
-<p>和“幻读”并不敏感，可能更关心数据并发访问的能力。</p>
-<p>查看当前数据库的事务隔离级别：（数据库的默认隔离级别为可重复读）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span><span class="string">&#x27;tx isolation&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/CWH6/2023/05/03/%E3%80%90mysql%E3%80%91%E5%B9%B6%E5%8F%91%E4%B8%8E%E4%BA%8B%E5%8A%A1/" data-id="clh7e383l000834pucrcnc228" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Redis工具类封装与解决缓存击穿，缓存穿透" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/bk/2023/05/03/Redis%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%81%E8%A3%85%E4%B8%8E%E8%A7%A3%E5%86%B3%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" class="article-date">
-  <time datetime="2023-05-03T03:10:29.000Z" itemprop="datePublished">2023-05-03</time>
-</a>
+    // 创建10个线程的线程池
+    private static final ExecutorService CACHE_REBUILD_EXECUTOR = Executors.newFixedThreadPool( nThreads: 10); 
     
-  <div class="article-category">
-    <a class="article-category-link" href="/bk/categories/Redis/">Redis</a>
-  </div>
+    /**
+    * 设置普通的缓存
+    */
+    public void set(String key, Object v ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/bk/2023/04/24/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-24T05:22:44.927Z" title="Created 2023-04-24 13:22:44">2023-04-24</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post$ hexo new "My New Post"
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/bk/2023/05/03/Redis%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%81%E8%A3%85%E4%B8%8E%E8%A7%A3%E5%86%B3%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">【Redis】工具类封装与解决缓存击穿，缓存穿透</a>
-    </h1>
-  
+More info: Writing
+Run server$ hexo server
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@slf4j</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CacheClient</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">CacheClient</span><span class="params">(StringRedisTemplate stringRedisTemplate)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.stringRedisTemplate = stringRedisTemplate;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建10个线程的线程池</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">ExecutorService</span> <span class="variable">CACHE_REBUILD_EXECUTOR</span> <span class="operator">=</span> Executors.newFixedThreadPool( nThreads: <span class="number">10</span>); </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 设置普通的缓存</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(String key, Object value,Long time, TimeUnit unit)</span> &#123;</span><br><span class="line">       stringRedisTemplate.opsForValue().setIfAbsent(key, value: JSONUtil.toJsonStr(value), timeout: time, unit);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 设置有逻辑过期的缓存</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setwithLogicalExpire</span><span class="params">(String key, Object value, Long time, TimeUnit unit)</span>&#123;</span><br><span class="line">     	<span class="comment">// 设置逻辑过期</span></span><br><span class="line">        <span class="type">RedisData</span> <span class="variable">redisata</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RedisData</span>();</span><br><span class="line">        redisData.setData(value):</span><br><span class="line">        redisData,setExpireTime(LocalDateTime,now().plusSeconds(unit,toSeconds(time)));</span><br><span class="line">        <span class="comment">// 写入Redis</span></span><br><span class="line">        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(value));   </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 基于缓存空对象，解决缓存穿透问题</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;R,ID&gt; R <span class="title function_">queryWithPassThrough</span><span class="params">(</span></span><br><span class="line"><span class="params">        String keyPrefix, ID id, Class&lt;R&gt; type, Function&lt;ID,R&gt; dbFallback,Long time, TimeUnit unit</span></span><br><span class="line"><span class="params">    )</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> keyPrefix + id;</span><br><span class="line">         <span class="comment">// 从redis查询商铺缓存</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(key);</span><br><span class="line">         <span class="comment">// 判断是否存在</span></span><br><span class="line">        <span class="keyword">if</span> (StrUtil.isNotBlank(json)) &#123;<span class="comment">// json不能为null,不能为“”，不能为空格</span></span><br><span class="line">         <span class="comment">// 存在，直接返回</span></span><br><span class="line">          <span class="type">Shop</span> <span class="variable">shop</span> <span class="operator">=</span> JSONUtil.toBean(shopJson, type);</span><br><span class="line">          <span class="keyword">return</span> shop;   </span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//不存在，根据id查询数据库</span></span><br><span class="line">        <span class="type">R</span> <span class="variable">r</span> <span class="operator">=</span> dbFallback.apply(id);</span><br><span class="line">        <span class="comment">//不存在，返回错误</span></span><br><span class="line">        <span class="keyword">if</span> (r == <span class="literal">null</span>) &#123;</span><br><span class="line">             <span class="comment">// 将空值写入redis</span></span><br><span class="line">            stringRedisTemplate.opsForValue().set(key, value: <span class="string">&quot;&quot;</span> ,CACHE_NULL_TTL，TimeUnit.MINUTES);<span class="comment">// 返回错误信息</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;   </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//存在，写入redis</span></span><br><span class="line">        <span class="built_in">this</span>.set(key, r, time, unit); </span><br><span class="line">        <span class="keyword">return</span> shop;</span><br><span class="line">   &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 基于逻辑过期方式，解决缓存击穿问题</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;R,ID&gt; R <span class="title function_">queryWithLogicalExpire</span><span class="params">(</span></span><br><span class="line"><span class="params">    String keyPrefix, ID id, Class&lt;R&gt; type, Function&lt;ID,R&gt; dbFallback,Long time, TimeUnit unit</span></span><br><span class="line"><span class="params">    )</span> &#123;</span><br><span class="line">         <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> keyPrefix + id;</span><br><span class="line">        <span class="comment">//从redis查询商铺缓存</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(key);</span><br><span class="line">         <span class="comment">//是否命中</span></span><br><span class="line">        <span class="keyword">if</span> (StrUtil.isBlank(json)) &#123;<span class="comment">//shopJson能为null,不能为“”，能为空格</span></span><br><span class="line">         <span class="comment">//存在，直接返回</span></span><br><span class="line">          <span class="keyword">return</span> <span class="literal">null</span>;   </span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//命中，判断是否缓存过期，需要将jsn反序列化为对象</span></span><br><span class="line">        <span class="type">RedisData</span> <span class="variable">redisData</span> <span class="operator">=</span> JSONUtil.toBean(json,RedisData);</span><br><span class="line">        <span class="type">R</span> <span class="variable">r</span> <span class="operator">=</span> JSONUtil.toBean((JsonObject)redisData.getData(),type);</span><br><span class="line">        <span class="type">LocalDateTime</span> <span class="variable">expireTime</span> <span class="operator">=</span> data.getExpireTime();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//缓存未过期，直接返回店铺信息</span></span><br><span class="line">        <span class="keyword">if</span>(expireTime.isAfter(LocalDateTime.now()))&#123;</span><br><span class="line">            <span class="keyword">return</span> r; </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//过期，尝试获取互斥锁</span></span><br><span class="line">        <span class="comment">//能获取互斥锁,没有资源在占用锁（获取锁,等于1说明没有人占用了）</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">lockKey</span> <span class="operator">=</span> LOCK_SHOP_KEY + id;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">isLock</span> <span class="operator">=</span> tryLock(lockKey)；</span><br><span class="line">        <span class="keyword">if</span>(isLock))&#123;</span><br><span class="line">             <span class="comment">//成功，开启独立线程，实现缓存重建</span></span><br><span class="line">             CACHE_REBUILD_EXECUTOR.submit(()-&gt;&#123;</span><br><span class="line">                 <span class="keyword">try</span>&#123;</span><br><span class="line">                    <span class="comment">//重建缓存</span></span><br><span class="line">                    <span class="type">R</span> <span class="variable">r</span> <span class="operator">=</span> dbFallback.apply(id);</span><br><span class="line">                    <span class="comment">// 设置延迟为200s,模拟复制业务查询后的key</span></span><br><span class="line">                    Thread.sleep(<span class="number">200</span>); </span><br><span class="line">                    <span class="built_in">this</span>.setwithLogicalExpire(key, r, time, unit);</span><br><span class="line">                 &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e) </span><br><span class="line">                 &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    <span class="comment">//释放锁</span></span><br><span class="line">                     unlock(lockKey); </span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)     </span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//返回过期数据</span></span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取锁</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">tryLock</span><span class="params">(String key)</span> [</span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">flag</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().setIfAbsent(key, value: <span class="string">&quot;1&quot;</span>， timeout: <span class="number">10</span>, TimeUnit.SECONDS):</span><br><span class="line">        <span class="keyword">return</span> BooleanUtil.isTrue(flag);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放锁</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">unlock</span><span class="params">(String key)</span> &#123;</span><br><span class="line">        stringRedisTemplate.delete(key);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+More info: Server
+Generate static files$ hexo generate
 
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShopServiceImpl</span> <span class="keyword">extends</span> <span class="title class_">ServiceImpl</span>&lt;ShopMapper, Shop&gt; <span class="keyword">implements</span> <span class="title class_">IShopService</span> &#123;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> StringRedisTemplate stringRedisTemplate:</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> CacheClientcacheClient  </span><br><span class="line">        </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">queryById</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">        <span class="comment">// 解决缓存穿透</span></span><br><span class="line">        <span class="comment">//写法1</span></span><br><span class="line">        <span class="type">Shop</span> <span class="variable">shop</span> <span class="operator">=</span> cacheclient.queryWithPassThrough(CACHE_SHOPKEY, id, Shop.class, id2 -&gt; getByid(id2), CACHE_SHOP_TTL，TimeUnit.MINUTES );</span><br><span class="line">        <span class="comment">//写法2</span></span><br><span class="line">       <span class="type">Shop</span> <span class="variable">shop</span> <span class="operator">=</span> cacheclient.queryWithPassThrough(CACHE_SHOPKEY, id, Shop.class, <span class="built_in">this</span>::getById, CACHE_SHOP_TTL，TimeUnit.MINUTES );</span><br><span class="line">       </span><br><span class="line">        <span class="comment">// 互斥锁解决缓存击穿</span></span><br><span class="line">        <span class="comment">// Shop shop = queryWithMutex(id);</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 逻辑过期解决缓存击穿</span></span><br><span class="line">        <span class="type">Shop</span> <span class="variable">shop</span> <span class="operator">=</span> cacheclient.queryWithLogicalExpire(CACHE_SHOPKEY,id,Shop.class,<span class="built_in">this</span>::getById,CACHE_SHOP_TTL，TimeUnit.MINUTES);</span><br><span class="line">        <span class="keyword">if</span> (shop == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> Result.fail(<span class="string">&quot;店铺不存在!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 7.返回</span></span><br><span class="line">        <span class="keyword">return</span> Result.ok(shop);          </span><br><span class="line">     &#125;</span><br><span class="line">  </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+More info: Generating
+Deploy to remote sites$ hexo deploy
 
-
-
-<p>给id为1数据，先缓存预热（再缓存击穿）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testSaveShop</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">    <span class="type">Shop</span> <span class="variable">shop</span> <span class="operator">=</span> shopService.getById(<span class="number">1L</span>);</span><br><span class="line">	cacheClient.setWithLogicalExpire( key: CACHE_SHOP_KEY + <span class="number">1L</span>, shop, <span class="number">10L</span>, TimeUnit,SECONDS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/CWH6/2023/05/03/Redis%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%81%E8%A3%85%E4%B8%8E%E8%A7%A3%E5%86%B3%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" data-id="clh7e383e000134puh9l75nbx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/bk/tags/Redis/" rel="tag">Redis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/bk/2023/04/24/hello-world/" class="article-date">
-  <time datetime="2023-04-24T05:22:44.927Z" itemprop="datePublished">2023-04-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/bk/2023/04/24/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://gitee.com/CWH6/2023/04/24/hello-world/" data-id="clh7e383h000334puap0ree5c" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/bk/categories/Redis/">Redis</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/bk/tags/Redis/" rel="tag">Redis</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/bk/tags/Redis/" style="font-size: 10px;">Redis</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/bk/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/bk/archives/2023/04/">April 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/bk/2023/05/03/%E3%80%90mysql%E3%80%91%E5%B9%B6%E5%8F%91%E4%B8%8E%E4%BA%8B%E5%8A%A1/">【mysql】并发与事务</a>
-          </li>
-        
-          <li>
-            <a href="/bk/2023/05/03/Redis%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%81%E8%A3%85%E4%B8%8E%E8%A7%A3%E5%86%B3%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">【Redis】工具类封装与解决缓存击穿，缓存穿透</a>
-          </li>
-        
-          <li>
-            <a href="/bk/2023/04/24/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2023 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/bk/" class="mobile-nav-link">Home</a>
-  
-    <a href="/bk/tags" class="mobile-nav-link">Tags</a>
-  
-    <a href="/bk/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/bk/categories" class="mobile-nav-link">Categories</a>
-  
-    <a href="/bk/about" class="mobile-nav-link">About</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/bk/fancybox/jquery.fancybox.css">
-
-  
-<script src="/bk/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/bk/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+More info: Deployment
+</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/bk/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">cwh</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/bk/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/bk/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/bk/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2023/05/03/%E3%80%90mysql%E3%80%91%E5%B9%B6%E5%8F%91%E4%B8%8E%E4%BA%8B%E5%8A%A1/" title="【mysql】并发与事务">【mysql】并发与事务</a><time datetime="2023-05-03T06:06:17.000Z" title="Created 2023-05-03 14:06:17">2023-05-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2023/05/03/Redis%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%81%E8%A3%85%E4%B8%8E%E8%A7%A3%E5%86%B3%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" title="【Redis】工具类封装与解决缓存击穿，缓存穿透">【Redis】工具类封装与解决缓存击穿，缓存穿透</a><time datetime="2023-05-03T03:10:29.000Z" title="Created 2023-05-03 11:10:29">2023-05-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2023/04/24/hello-world/" title="Hello World">Hello World</a><time datetime="2023-04-24T05:22:44.927Z" title="Created 2023-04-24 13:22:44">2023-04-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/bk/categories/Redis/"><span class="card-category-list-name">Redis</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/bk/tags/Redis/" style="font-size: 1.1em; color: #999">Redis</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/bk/archives/2023/05/"><span class="card-archive-list-date">May 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/bk/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">3</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastpushdate="2023-05-03T10:15:03.162Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">©2020 - 2023 By cwh</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/bk/js/utils.js"></script><script src="/bk/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script><script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
