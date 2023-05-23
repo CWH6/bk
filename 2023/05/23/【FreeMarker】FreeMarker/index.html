@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【FreeMarker】FreeMarker | ChenWeiHui's Blog</title><meta name="author" content="cwh"><meta name="copyright" content="cwh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="概念​        FreeMarker 是一款 模板引擎 : 即一种基于模板和要改变的数据，并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。是一个Java类库。 ​        FreeMarker 被设计用来生成HTML Web 页面，特别是基于MVC模式的应用程序，将视图从业务逻辑中抽离处理，业务中不再包括视图的展示，而是将视图交给 FreeMarker 来输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【FreeMarker】FreeMarker">
+<meta property="og:url" content="https://gitee.com/CWH6/2023/05/23/%E3%80%90FreeMarker%E3%80%91FreeMarker/index.html">
+<meta property="og:site_name" content="ChenWeiHui&#39;s Blog">
+<meta property="og:description" content="概念​        FreeMarker 是一款 模板引擎 : 即一种基于模板和要改变的数据，并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。是一个Java类库。 ​        FreeMarker 被设计用来生成HTML Web 页面，特别是基于MVC模式的应用程序，将视图从业务逻辑中抽离处理，业务中不再包括视图的展示，而是将视图交给 FreeMarker 来输">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/jljy.png">
+<meta property="article:published_time" content="2023-05-23T14:50:41.000Z">
+<meta property="article:modified_time" content="2023-05-23T17:03:13.034Z">
+<meta property="article:author" content="cwh">
+<meta property="article:tag" content="FreeMarker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/jljy.png"><link rel="shortcut icon" href="/bk/img/jljy3.png"><link rel="canonical" href="https://gitee.com/CWH6/2023/05/23/%E3%80%90FreeMarker%E3%80%91FreeMarker/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/bk/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/bk/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【FreeMarker】FreeMarker',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-24 01:03:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/jljy.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/bk/archives/"><div class="headline">Articles</div><div class="length-num">20</div></a><a href="/bk/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/bk/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/bk/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/bk/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bk/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/bk/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/bk/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bk/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/bk/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/bk/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/bk/" title="ChenWeiHui's Blog"><span class="site-name">ChenWeiHui's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/bk/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/bk/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bk/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/bk/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/bk/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bk/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/bk/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/bk/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【FreeMarker】FreeMarker</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-23T14:50:41.000Z" title="Created 2023-05-23 22:50:41">2023-05-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-23T17:03:13.034Z" title="Updated 2023-05-24 01:03:13">2023-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/bk/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【FreeMarker】FreeMarker"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>​        FreeMarker 是一款 <strong>模板引擎</strong> : 即一种基于模板和要改变的数据，并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。是一个Java类库。</p>
+<p>​        <strong>FreeMarker 被设计用来生成HTML Web 页面</strong>，特别是基于MVC模式的应用程序，将视图从业务逻辑中抽离处理，业务中不再包括视图的展示，而是将视图交给 FreeMarker 来输出。虽然FreeMarker 具有一些编程的能力，但通常由Java 程序准备要显示的数据，由 FreeMarker 生成页面，通过模板显示准备的数据(如下图):</p>
+<p><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20230523232142086.png" alt="image-20230523232142086"></p>
+<p>FreeMarker不是一个Web应用框架，而适合作为Web应用框架一个组件</p>
+<p>FreeMarker与容器无关，因为它并不知道HTTP或Servlet。FreeMarker同样可以应用于非Web应用程序环境。</p>
+<p>FreeMarker更适合作为Model2框架 (如Struts)的视图组件，你也可以在模板中使用JSP标记库</p>
+<blockquote>
+<p>更多信息参考 <a target="_blank" rel="noopener" href="https://freemarker.apache.org/">英文官网</a>  或者 <a target="_blank" rel="noopener" href="http://freemarker.foofun.cn/">中文官网</a></p>
+</blockquote>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p><strong>1、通用目标</strong></p>
+<ul>
+<li>能够生成各种文本:HTML、XML、RTF、Java 源代码等等</li>
+<li>易于嵌入到你的产品中:轻量级;不需要Servlet 环境</li>
+<li>插件式模板载入器:可以从任何源载入模板，如本地文件、数据库等等</li>
+<li>你可以按你所需生成文本:保存到本地文件;作为 Emal 发送;从Web 应用程序发送它返回给 Web 浏览器</li>
+</ul>
+<p><strong>2、强大的模板语言</strong></p>
+<ul>
+<li>所有常用的指令:include、if/elseif/else、循环结构</li>
+<li>在模板中创建和改变变量</li>
+<li>几乎在任何地方都可以使用复杂表达式来指定值</li>
+<li>命名的宏，可以具有位置参数和嵌套内容</li>
+<li>名字空间有助于建立和维护可重用的宏库，或将大工程分成模块，而不必担心名字冲突</li>
+<li>输出转换块:在嵌套模板片段生成输出时，转换HTML转义、压缩、语法高亮等等，你可以定义自己的转换</li>
+</ul>
+<p><strong>3、通用数据模型</strong></p>
+<ul>
+<li>FreeMarker不是直接反射到Java对象，Java对象通过插件式对象封装，以变量方式在模板中显示</li>
+<li>你可以使用抽象(接口)方式表示对象（JavaBean、XML文档、SQL查询结果集等等)告诉模板开发者使用方法，使七不受技术细节的打扰</li>
+</ul>
+<p><strong>4、为Web准备</strong></p>
+<p>在模板语言中内建处理典型Web相关任务(如HTML转义)的结构</p>
+<p>能够集成到Model2 Web应用框架中作为JSP的替代</p>
+<p>支持]SP标记库</p>
+<p>为MVC模式设计:分离可视化设计和应用程序逻辑;分离页面设计员和程序员</p>
+<p><strong>5、智能的国际化和本地化</strong></p>
+<p>字符集智能化（内部使用UNICODE）</p>
+<p>数字格式本地化敏感</p>
+<p>日期和时间格式本地化敏感</p>
+<p>非US字符集可以用作标识(如变量名)</p>
+<p>多种不同语言的相同模板</p>
+<p><strong>6、强大的XML的处理能力</strong></p>
+<p>&lt;#recurse&gt;和&lt;#visit&gt;指令(2.3版本)用于递归遍历XML树。在模板中清楚和直接的访问XML对象模型开源论坛JForum就是使用了 FreeMarker 做为页面模板。</p>
+<p><strong>通用数据模型</strong></p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p><strong>1、新建Maven Web项目</strong></p>
+<img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20230523233928303.png" alt="image-20230523233928303" style="zoom: 67%;" />
+
+<p><strong>2、配置坐标依赖和部署插件</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- freemarker的坐标依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.freemarker<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>freemarker<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.23<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- servlet-api的坐标依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bui1d</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">finaTName</span>&gt;</span>freemarker<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	插件地址:</span></span><br><span class="line"><span class="comment">	  Tomcat</span></span><br><span class="line"><span class="comment">		http://tomcat.apache.org/maven-plugin-2.2/</span></span><br><span class="line"><span class="comment">	  Jetty</span></span><br><span class="line"><span class="comment">		https://ww.eclipse.org/jetty/documentation/current/jetty-maven-plugin.html</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">pTugins</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置jetty插件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.eclipse.jetty<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jetty-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>9.2.1.v20140609<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p1ugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bui1d</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3、配置坐标依赖和部署插件</strong></p>
+<p>在项目的webapp/WEB-INF目录下的web.xml文件中，添加freemarker 相关 servlet 配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">id</span>=<span class="string">&quot;WebApp_ID&quot;</span> <span class="attr">version</span>=<span class="string">&quot;3.0&quot;</span> </span></span><br><span class="line"><span class="tag"><span class="attr">xmlns</span>=<span class="string">&quot;http://java.sun.com/xml/ns/javaee&quot;</span> </span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> </span></span><br><span class="line"><span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://java.sun.com/xml/ns/javaee </span></span></span><br><span class="line"><span class="string"><span class="tag">http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- FreeMarker 的Servlet配置 --&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>freemarker<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>freemarker.ext.servlet.FreemarkerServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span> </span><br><span class="line">        <span class="comment">&lt;!-- 模板路径 --&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>TemplatePath<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span> </span><br><span class="line">        <span class="comment">&lt;!-- 默认在webapp目录下查找对应的模板文件 --&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span> </span><br><span class="line">        <span class="comment">&lt;!-- 模板默认的编码：UTF-8 --&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>default_encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span> </span><br><span class="line">	<span class="comment">&lt;!-- 处理所有以.ft1结尾的文件; ft1是freemarker默认的文件后缀 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">servTet-name</span>&gt;</span>freemarker<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.ft1<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servTet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span>	    </span><br></pre></td></tr></table></figure>
+
+<p><strong>4、编写Servlet类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xxxx.controllter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet(&quot;/f01&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FreeMarker01</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> 	ServletException, IOException &#123;</span><br><span class="line">        <span class="comment">// 添加数据</span></span><br><span class="line">        request.setAttribute(<span class="string">&quot;msg&quot;</span>,<span class="string">&quot;Hello FreeMarker!&quot;</span>);</span><br><span class="line">        <span class="comment">// 请求转发跳转到ftl文件中</span></span><br><span class="line">        request.getRequestDispatcher(<span class="string">&quot;template/f01.ftl&quot;</span>).forward(request,response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>5、新建模板文件 ftl</strong></p>
+<p>在webapp目录下新建template文件夹，创建f01.ftl文件</p>
+<p><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20230523235846218.png" alt="image-20230523235846218"></p>
+<p><strong>6、启动项目</strong></p>
+<p>点击 Add Configuation —&gt;  “+ “ —&gt; maven —–&gt; 填写运行名称跟端口</p>
+<img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20230524000022950.png" alt="image-20230524000022950" style="zoom: 67%;" />
+
+<p><strong>7、访问项目</strong></p>
+<blockquote>
+<p>浏览器地址栏输入: <a target="_blank" rel="noopener" href="http://localhost:8989/f01">http://localhost:8989/f01</a></p>
+</blockquote>
+<img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20230524000608459.png" alt="image-20230524000608459" style="zoom:67%;" />
+
+
+
+<p><strong>补充</strong></p>
+<p>freemarker的语法</p>
+<p>1、html所有的标签都适合</p>
+<p>2、js与css的使用，与html中的语法一致</p>
+<p>修改f01.ftl文件，如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;#-- css的使用 --&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">h2</span>&#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">font-family</span>: 楷体；  </span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">&lt;#-- 获取数据 --&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>$(msg&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">&lt;#-- js的使用 --&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">	alert(&quot;freemarkert&#x27;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20230524001214364.png" alt="image-20230524001214364"></p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Freemarker 模板中的数据类型由如下几种:</p>
+<ul>
+<li>布尔型:等价于Java的 Boolean 类型，不同的是不能直接输出，可转换为字符串输出</li>
+<li>日期型:等价于java的 Date 类型，不同的是不能直接输出，需要转换成字符串再输出</li>
+<li>数值型:等价于java中的int,float,double 等数值类型</li>
+<li>有三种显示形式:数值型(默认)、货币型、百分比型</li>
+<li>字符型:等价于java中的字符串，有很多内置函数</li>
+<li>sequence 类型:等价于java 中的数组，list，set 等集合类型</li>
+<li>hash类型:等价于java中的Map 类型</li>
+</ul>
+<h3 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h3><p>1、在Servlet中设置不布尔类型的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 布尔类型</span></span><br><span class="line">request.setAttribute(<span class="string">&quot;flag&quot;</span>，<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>2、获取数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;#-- </span><br><span class="line">    数据类型:布尔类型</span><br><span class="line">		在freemarker中布尔类型不能直接输出;如果输出要先转成字符串</span><br><span class="line">        方式一: ?c</span><br><span class="line">        方式二:?string 或 ?string(<span class="string">&quot;true时的文本&quot;</span>,<span class="string">&quot;false时的文本&quot;</span>)</span><br><span class="line">--&gt;</span><br><span class="line">$&#123;flag?c&#125; &lt;br&gt;</span><br><span class="line">$&#123;flag?string&#125; &lt;br&gt;</span><br><span class="line">$[flag?string(<span class="string">&quot;yes&quot;</span>,<span class="string">&quot;no&quot;</span>)&#125; &lt;br&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3、访问url: <a target="_blank" rel="noopener" href="http://localhost:8989/f01">http://localhost:8989/f01</a> ,响应结果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line">yes</span><br></pre></td></tr></table></figure>
+
+<p><strong>补充</strong></p>
+<p>可以配合 then 使用, then从 FreeMarker 2.3.23 版本开始存在</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;#<span class="type">assign</span> <span class="variable">foo</span> <span class="operator">=</span> <span class="literal">true</span>&gt;</span><br><span class="line">$&#123;foo ? fhen(<span class="string">&#x27;Y&#x27;</span>，<span class="string">&#x27;N&#x27;</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y</span><br></pre></td></tr></table></figure>
+
+<h3 id="日期类型"><a href="#日期类型" class="headerlink" title="日期类型"></a>日期类型</h3><p>1、在Servlet中设置日期类型的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日期类型</span></span><br><span class="line">request.setAttribute(<span class="string">&quot;createDate&quot;</span>,<span class="keyword">new</span> <span class="title class_">Date0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>2、获得数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;#--</span><br><span class="line">	数据类型:日期类型</span><br><span class="line">		在freemarker中日期类型不能直接输出;如果输出要先转成日期型或字符串</span><br><span class="line">		<span class="number">1.</span>年月日   ?date</span><br><span class="line">		<span class="number">2.</span>时分秒   ?time</span><br><span class="line">		<span class="number">3.</span>年月日时分秒  ?datetime</span><br><span class="line">		<span class="number">4.</span>指定格式  ?string(<span class="string">&quot;自定义格式&quot;</span>)</span><br><span class="line">                   y:年  M:月  d:日</span><br><span class="line">				   H:时  m:分  s:秒</span><br><span class="line">--&gt;</span><br><span class="line">&lt;#-- 输出日期格式 --&gt;</span><br><span class="line">$&#123;createDate?date] &lt;br&gt;</span><br><span class="line">&lt;#-- 输出时间格式--&gt;</span><br><span class="line">$&#123;createDate?time] &lt;br&gt;</span><br><span class="line">&lt;#-- 输出日期时间格式 --&gt;</span><br><span class="line">$&#123;createDate?datetime] &lt;br&gt;</span><br><span class="line">&lt;#-- 输出格式化日期格式 --&gt;</span><br><span class="line">$&#123;createDate?string(<span class="string">&quot;yyyy年MM月dd日 HH:mm:ss&quot;</span>)&#125; &lt;br&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3、访问对应url，响应如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span>-<span class="number">3</span>-<span class="number">16</span></span><br><span class="line"><span class="number">16</span>:<span class="number">59</span>:<span class="number">33</span></span><br><span class="line"><span class="number">2020</span>-<span class="number">3</span>-<span class="number">16</span> <span class="number">16</span>:<span class="number">59</span>:<span class="number">33</span></span><br><span class="line"><span class="number">2020</span>/<span class="number">03</span>/<span class="number">16</span> <span class="number">16</span>:<span class="number">59</span>:<span class="number">33</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h3><p>1、在Servlet设置数值型的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令"></a>常见指令</h2><h2 id="页面静态化"><a href="#页面静态化" class="headerlink" title="页面静态化"></a>页面静态化</h2><h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://gitee.com/CWH6">cwh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://gitee.com/CWH6/2023/05/23/%E3%80%90FreeMarker%E3%80%91FreeMarker/">https://gitee.com/CWH6/2023/05/23/%E3%80%90FreeMarker%E3%80%91FreeMarker/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/bk/tags/FreeMarker/">FreeMarker</a></div><div class="post_share"><div class="social-share" data-image="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/jljy.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/bk/2023/05/22/%E3%80%90SVN%E3%80%91%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%B8%8EIDEA%E9%9B%86%E6%88%90/" title="【SVN】安装使用与IDEA集成"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【SVN】安装使用与IDEA集成</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/jljy.png" onerror="this.onerror=null;this.src='/bk/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cwh</div><div class="author-info__description">努力</div></div><div class="card-info-data site-data is-center"><a href="/bk/archives/"><div class="headline">Articles</div><div class="length-num">20</div></a><a href="/bk/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a><a href="/bk/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:2747758546@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/wx_self.jpg" target="_blank" title="wx"><i class="fas fa-qq" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content"></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">布尔类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">日期类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">数值类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%8C%87%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">常见指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E9%9D%99%E6%80%81%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">页面静态化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">6.</span> <span class="toc-text">运算符</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2023/05/23/%E3%80%90FreeMarker%E3%80%91FreeMarker/" title="【FreeMarker】FreeMarker">【FreeMarker】FreeMarker</a><time datetime="2023-05-23T14:50:41.000Z" title="Created 2023-05-23 22:50:41">2023-05-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2023/05/22/%E3%80%90SVN%E3%80%91%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%B8%8EIDEA%E9%9B%86%E6%88%90/" title="【SVN】安装使用与IDEA集成">【SVN】安装使用与IDEA集成</a><time datetime="2023-05-22T12:13:26.000Z" title="Created 2023-05-22 20:13:26">2023-05-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2023/05/19/%E3%80%90SpringBoot%E3%80%91SpringBoot%E6%95%B4%E5%90%88Mybatis/" title="【SpringBoot】SpringBoot整合Mybatis">【SpringBoot】SpringBoot整合Mybatis</a><time datetime="2023-05-19T15:40:46.000Z" title="Created 2023-05-19 23:40:46">2023-05-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2023/05/16/%E3%80%90RSA%E3%80%91%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AERSA%E5%8A%A0%E8%A7%A3%E5%AF%86/" title="【RSA】实现数据RSA加解密">【RSA】实现数据RSA加解密</a><time datetime="2023-05-16T07:47:10.000Z" title="Created 2023-05-16 15:47:10">2023-05-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2023/05/16/%E5%BE%88%E9%85%B7%E7%9A%84%E4%BA%8B/" title="很酷的事">很酷的事</a><time datetime="2023-05-16T05:08:01.000Z" title="Created 2023-05-16 13:08:01">2023-05-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By cwh</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/bk/js/utils.js"></script><script src="/bk/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="offer" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
