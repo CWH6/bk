@@ -1,0 +1,388 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【系统设计】电梯调度系统 | ChenWeiHui's Blog</title><meta name="author" content="cwh"><meta name="copyright" content="cwh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="设计一个电梯调度系统涉及多个方面，包括用户界面、系统架构、调度算法、安全性等。以下是一个基本的设计框架： 系统需求分析用户需求1、支持多层楼的请求 2、提供上行和下行的请求 3、提供紧急停靠的功能 4、显示当前电梯位置和运动方向 技术需求1、高效的调度算法 2、实时响应用户请求 3、处理并发请求 4、系统的高可用性和可靠性 系统架构设计前端电梯内控制面板：按钮、显示屏 各楼层外的请求按钮（上行和下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【系统设计】电梯调度系统">
+<meta property="og:url" content="https://github.com/CWH6/bk/2024/07/24/%E3%80%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E3%80%91%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="ChenWeiHui&#39;s Blog">
+<meta property="og:description" content="设计一个电梯调度系统涉及多个方面，包括用户界面、系统架构、调度算法、安全性等。以下是一个基本的设计框架： 系统需求分析用户需求1、支持多层楼的请求 2、提供上行和下行的请求 3、提供紧急停靠的功能 4、显示当前电梯位置和运动方向 技术需求1、高效的调度算法 2、实时响应用户请求 3、处理并发请求 4、系统的高可用性和可靠性 系统架构设计前端电梯内控制面板：按钮、显示屏 各楼层外的请求按钮（上行和下">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png">
+<meta property="article:published_time" content="2024-07-24T04:38:07.000Z">
+<meta property="article:modified_time" content="2024-07-24T10:14:08.996Z">
+<meta property="article:author" content="cwh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png"><link rel="shortcut icon" href="/bk/img/jljy3.png"><link rel="canonical" href="https://github.com/CWH6/bk/2024/07/24/%E3%80%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E3%80%91%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/bk/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/bk/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【系统设计】电梯调度系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-24 18:14:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/bk/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/bk/tags/"><div class="headline">Tags</div><div class="length-num">33</div></a><a href="/bk/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/bk/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/bk/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bk/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/bk/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/bk/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bk/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/bk/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/bk/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/bk/img/alone_blue_sky.jpg')"><nav id="nav"><span id="blog-info"><a href="/bk/" title="ChenWeiHui's Blog"><span class="site-name">ChenWeiHui's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/bk/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/bk/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bk/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/bk/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/bk/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bk/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/bk/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/bk/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【系统设计】电梯调度系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-07-24T04:38:07.000Z" title="Created 2024-07-24 12:38:07">2024-07-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-07-24T10:14:08.996Z" title="Updated 2024-07-24 18:14:08">2024-07-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【系统设计】电梯调度系统"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>设计一个电梯调度系统涉及多个方面，包括用户界面、系统架构、调度算法、安全性等。以下是一个基本的设计框架：</p>
+<h2 id="系统需求分析"><a href="#系统需求分析" class="headerlink" title="系统需求分析"></a>系统需求分析</h2><h3 id="用户需求"><a href="#用户需求" class="headerlink" title="用户需求"></a>用户需求</h3><p>1、支持多层楼的请求</p>
+<p>2、提供上行和下行的请求</p>
+<p>3、提供紧急停靠的功能</p>
+<p>4、显示当前电梯位置和运动方向</p>
+<h3 id="技术需求"><a href="#技术需求" class="headerlink" title="技术需求"></a>技术需求</h3><p>1、高效的调度算法</p>
+<p>2、实时响应用户请求</p>
+<p>3、处理并发请求</p>
+<p>4、系统的高可用性和可靠性</p>
+<h2 id="系统架构设计"><a href="#系统架构设计" class="headerlink" title="系统架构设计"></a>系统架构设计</h2><h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><p>电梯内控制面板：按钮、显示屏</p>
+<p>各楼层外的请求按钮（上行和下行）</p>
+<p>如下图:</p>
+<img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20240724133603078.png" alt="image-20240724133603078" style="zoom:50%;" />
+
+<h3 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h3><p>电梯控制器：处理电梯的运动，门的开关等</p>
+<p>调度系统：接受请求并决定电梯的调度</p>
+<p>状态监控：实时监控电梯状态</p>
+<p>如下图：<br><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20240724144821039.png" alt="image-20240724144821039" style="zoom: 80%;" /></p>
+<h3 id="通信模块"><a href="#通信模块" class="headerlink" title="通信模块"></a>通信模块</h3><p>实时数据传输</p>
+<p>故障报警和紧急处理</p>
+<h2 id="调度算法设计"><a href="#调度算法设计" class="headerlink" title="调度算法设计"></a>调度算法设计</h2><p>常用的调度算法包括：</p>
+<p>先到先服务： 简单但是可能不高效</p>
+<p>扫描算法：电梯像磁头一样来回移动，处理上下行请求，减少等待时间</p>
+<p>循环扫描算法：类似扫描算法 ，但每次到达顶层时直接返回起始点，提高效率</p>
+<p>优化sacn算法：电梯只有请求的最远点，再反向移动</p>
+<h2 id="调度过程"><a href="#调度过程" class="headerlink" title="调度过程"></a>调度过程</h2><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20240724174316694.png" alt="image-20240724174316694" style="zoom: 67%;" />
+
+<p><strong>过程描述：</strong></p>
+<p>用户A和用户B在1F【外部控制器】中点击[上行]。</p>
+<p>【电梯】监听所有【外部控制器】，根据最先发起状态改动的【外部控制器】做优先处理。</p>
+<p>判断[当前楼层]是否大于【监听到的外部控制器】的[楼层]。</p>
+<ul>
+<li>如果大于，修改【电梯】状态为[下行]，并向下移动。</li>
+<li>否则，修改【电梯】状态为[上行]，并向上移动。</li>
+</ul>
+<p>当【电梯】的[当前楼层]等于【监听到的外部控制器】的[楼层]时，[状态]修改为[停止]，并调用[开门]。</p>
+<p>用户A进入【电梯】后，在【内部控制器】点击[目标楼层]按钮，【电梯】记录用户的[目标楼层]。</p>
+<p>当用户点击【内部控制器】[关门]后，判断[目标楼层]是否大于[当前楼层]。</p>
+<ul>
+<li>如果大于，修改【电梯】的[状态]为[上行]。</li>
+<li>否则，修改【电梯】的[状态]为[下行]。</li>
+</ul>
+<p>当【电梯】的[当前楼层]等于用户的[目标楼层]时，【电梯】的[状态]修改为[停止]，并调用[开门]等待用户操作。</p>
+<p>如果有新的外部请求，在当前请求处理完毕后继续处理。</p>
+<h2 id="电梯调度分析及实现"><a href="#电梯调度分析及实现" class="headerlink" title="电梯调度分析及实现"></a>电梯调度分析及实现</h2><p>预约式电梯调度系统的基本原理，允许乘客提前预约他们想要乘坐的电梯<br>并根据乘客的需求和电梯的运行状态来调度电梯的运行</p>
+<h3 id="er图"><a href="#er图" class="headerlink" title="er图"></a>er图</h3><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/image-20240724154825644.png" alt="image-20240724154825644" style="zoom:67%;" />
+
+
+
+<h3 id="具体类"><a href="#具体类" class="headerlink" title="具体类"></a>具体类</h3><p><strong>电梯类(Elevator)</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>int</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>no</td>
+<td>varchar</td>
+<td>电梯编号</td>
+</tr>
+<tr>
+<td>current_floor</td>
+<td>int</td>
+<td>电梯当前楼层</td>
+</tr>
+<tr>
+<td>status</td>
+<td>enum(up-上，down-下，stop-停止)</td>
+<td>电梯当前状态（如“上行”、“下行”、“停止”）</td>
+</tr>
+<tr>
+<td>target_floors</td>
+<td>varchar</td>
+<td>用户目的楼层列表</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>返回值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>addRequest(Request request)</td>
+<td>void</td>
+<td>添加到请求队列</td>
+</tr>
+<tr>
+<td>processNextRequest()</td>
+<td>void</td>
+<td>下一个请求</td>
+</tr>
+<tr>
+<td>moveToFloor</td>
+<td>void</td>
+<td>移动到指定楼层</td>
+</tr>
+<tr>
+<td>openDoors</td>
+<td>void</td>
+<td>开门</td>
+</tr>
+<tr>
+<td>closeDoors()</td>
+<td>void</td>
+<td>关门</td>
+</tr>
+<tr>
+<td>addTargetFloor</td>
+<td>void</td>
+<td>添加到目标楼层队列</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>外部调度器类(ExternalController)</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>int</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>floor</td>
+<td>int</td>
+<td>该控制器所在的楼层</td>
+</tr>
+<tr>
+<td>up_button</td>
+<td>boolean</td>
+<td>上行请求按钮状态（按下/未按下）</td>
+</tr>
+<tr>
+<td>down_button</td>
+<td>boolean</td>
+<td>下行请求按钮状态（按下/未按下）</td>
+</tr>
+<tr>
+<td>elevator_id</td>
+<td>int</td>
+<td>关联的电梯ID</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>返回值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>requestElevator(direction)</td>
+<td>void</td>
+<td>请求电梯（上行或下行）</td>
+</tr>
+<tr>
+<td>cancelRequest(direction)</td>
+<td>void</td>
+<td>取消电梯请求</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>电梯类(Elevator)</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Elevator</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> currentFloor;</span><br><span class="line">    <span class="keyword">private</span> String status; <span class="comment">// &quot;up&quot;, &quot;down&quot;, &quot;stopped&quot;</span></span><br><span class="line">    <span class="keyword">private</span> String number;</span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Request&gt; requestQueue;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; targetFloorsList;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Elevator</span><span class="params">(<span class="type">int</span> id, <span class="type">int</span> currentFloor, String number)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.id = id;</span><br><span class="line">        <span class="built_in">this</span>.currentFloor = currentFloor;</span><br><span class="line">        <span class="built_in">this</span>.status = <span class="string">&quot;stopped&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.number = number;</span><br><span class="line">        <span class="built_in">this</span>.requestQueue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        <span class="built_in">this</span>.targetFloorsList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加进请求队列</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addRequest</span><span class="params">(Request request)</span> &#123;</span><br><span class="line">        requestQueue.add(request);</span><br><span class="line">        processNextRequest();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 下一个请求</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">processNextRequest</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (status.equals(<span class="string">&quot;stopped&quot;</span>) &amp;&amp; !requestQueue.isEmpty()) &#123;</span><br><span class="line">            <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> requestQueue.poll();</span><br><span class="line">            <span class="keyword">if</span> (currentFloor &gt; request.getFloor()) &#123;</span><br><span class="line">                status = <span class="string">&quot;down&quot;</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentFloor &lt; request.getFloor()) &#123;</span><br><span class="line">                status = <span class="string">&quot;up&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            moveToFloor(request.getFloor());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 移动电梯</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">moveToFloor</span><span class="params">(<span class="type">int</span> floor)</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (currentFloor != floor) &#123;</span><br><span class="line">            <span class="keyword">if</span> (status.equals(<span class="string">&quot;up&quot;</span>)) &#123;</span><br><span class="line">                currentFloor++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (status.equals(<span class="string">&quot;down&quot;</span>)) &#123;</span><br><span class="line">                currentFloor--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        status = <span class="string">&quot;stopped&quot;</span>;</span><br><span class="line">        openDoors();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 开门</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">openDoors</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Doors opening at floor &quot;</span> + currentFloor);</span><br><span class="line">        <span class="comment">// Simulate door open time</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>); <span class="comment">// 2 seconds</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 关门</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">closeDoors</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Doors closing at floor &quot;</span> + currentFloor);</span><br><span class="line">        <span class="comment">// Simulate door close time</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>); <span class="comment">// 2 seconds</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        processNextRequest();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加用户目标楼层进队列</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addTargetFloor</span><span class="params">(<span class="type">int</span> floor)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!targetFloorsList.contains(floor)) &#123;</span><br><span class="line">            targetFloorsList.add(floor);</span><br><span class="line">            Collections.sort(targetFloorsList);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>请求类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Request</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> floor;</span><br><span class="line">    <span class="keyword">private</span> String direction; <span class="comment">// &quot;up&quot;, &quot;down&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Request</span><span class="params">(<span class="type">int</span> floor, String direction)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.floor = floor;</span><br><span class="line">        <span class="built_in">this</span>.direction = direction;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>外部调度器类(ExternalController)</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExternalController</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> floor;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> upButton;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> downButton;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> elevatorId;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ExternalController</span><span class="params">(<span class="type">int</span> floor, <span class="type">int</span> elevatorId)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.floor = floor;</span><br><span class="line">        <span class="built_in">this</span>.upButton = <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">this</span>.downButton = <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">this</span>.elevatorId = elevatorId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 请求电梯（上行或下行）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">requestElevator</span><span class="params">(String direction, Elevator elevator)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;up&quot;</span>.equals(direction)) &#123;</span><br><span class="line">            <span class="built_in">this</span>.upButton = <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;down&quot;</span>.equals(direction)) &#123;</span><br><span class="line">            <span class="built_in">this</span>.downButton = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>(floor, direction);</span><br><span class="line">        elevator.addRequest(request);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 取消电梯请求</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">cancelRequest</span><span class="params">(String direction)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;up&quot;</span>.equals(direction)) &#123;</span><br><span class="line">            <span class="built_in">this</span>.upButton = <span class="literal">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;down&quot;</span>.equals(direction)) &#123;</span><br><span class="line">            <span class="built_in">this</span>.downButton = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 处理取消请求逻辑，如果需要</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isUpButton</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> upButton;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isDownButton</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> downButton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Elevator</span> <span class="variable">elevator</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Elevator</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="string">&quot;Elevator 1&quot;</span>);</span><br><span class="line">        <span class="type">ExternalController</span> <span class="variable">controller1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExternalController</span>(<span class="number">1</span>, elevator.getId());</span><br><span class="line">        <span class="type">ExternalController</span> <span class="variable">controller2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExternalController</span>(<span class="number">2</span>, elevator.getId());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 用户A和用户B在1F请求上行电梯</span></span><br><span class="line">        controller1.requestElevator(<span class="string">&quot;up&quot;</span>, elevator);</span><br><span class="line">        controller2.requestElevator(<span class="string">&quot;up&quot;</span>, elevator);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 模拟用户A进入电梯并选择目标楼层</span></span><br><span class="line">        elevator.addTargetFloor(<span class="number">5</span>);</span><br><span class="line">        elevator.closeDoors();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 模拟电梯到达目标楼层</span></span><br><span class="line">        elevator.moveToFloor(<span class="number">5</span>);</span><br><span class="line">        elevator.openDoors();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://github.com/CWH6/bk">cwh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/CWH6/bk/2024/07/24/%E3%80%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E3%80%91%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F/">https://github.com/CWH6/bk/2024/07/24/%E3%80%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E3%80%91%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/bk/2024/07/23/%E3%80%90Redis%E3%80%91Redis%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9%E5%88%86%E6%9E%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="【Redis】Redis穿透、击穿、雪崩分析解决方案"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【Redis】Redis穿透、击穿、雪崩分析解决方案</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png" onerror="this.onerror=null;this.src='/bk/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cwh</div><div class="author-info__description">简单写写,记录代码</div></div><div class="card-info-data site-data is-center"><a href="/bk/archives/"><div class="headline">Articles</div><div class="length-num">70</div></a><a href="/bk/tags/"><div class="headline">Tags</div><div class="length-num">33</div></a><a href="/bk/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" href="https://github.com/cwh6"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:2747758546@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/wx_self.jpg" target="_blank" title="wx"><i class="fas fa-qq" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">ありがとう、私の暗い世界の小さな太陽、ありがとう、ずっと温めてくれた</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">系统需求分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E9%9C%80%E6%B1%82"><span class="toc-number">1.1.</span> <span class="toc-text">用户需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E9%9C%80%E6%B1%82"><span class="toc-number">1.2.</span> <span class="toc-text">技术需求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">系统架构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-number">2.1.</span> <span class="toc-text">前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF"><span class="toc-number">2.2.</span> <span class="toc-text">后端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9D%97"><span class="toc-number">2.3.</span> <span class="toc-text">通信模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">调度算法设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E8%BF%87%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">调度过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6%E5%88%86%E6%9E%90%E5%8F%8A%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.</span> <span class="toc-text">电梯调度分析及实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#er%E5%9B%BE"><span class="toc-number">5.1.</span> <span class="toc-text">er图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E7%B1%BB"><span class="toc-number">5.2.</span> <span class="toc-text">具体类</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2024/07/24/%E3%80%90%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E3%80%91%E7%94%B5%E6%A2%AF%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F/" title="【系统设计】电梯调度系统">【系统设计】电梯调度系统</a><time datetime="2024-07-24T04:38:07.000Z" title="Created 2024-07-24 12:38:07">2024-07-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2024/07/23/%E3%80%90Redis%E3%80%91Redis%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9%E5%88%86%E6%9E%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="【Redis】Redis穿透、击穿、雪崩分析解决方案">【Redis】Redis穿透、击穿、雪崩分析解决方案</a><time datetime="2024-07-23T05:05:01.000Z" title="Created 2024-07-23 13:05:01">2024-07-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2024/06/11/%E3%80%90github%E3%80%91%E5%9F%BA%E4%BA%8EActions%E9%83%A8%E7%BD%B2vuepress2/" title="【github】基于Actions部署vuepress2">【github】基于Actions部署vuepress2</a><time datetime="2024-06-11T03:33:19.000Z" title="Created 2024-06-11 11:33:19">2024-06-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2024/06/07/%E3%80%90github%E3%80%91github%E4%BB%93%E5%BA%93%E5%90%8C%E6%AD%A5gitte%E4%BB%93%E5%BA%93%E9%A1%B9%E7%9B%AE/" title="【github】github仓库同步gitte仓库项目">【github】github仓库同步gitte仓库项目</a><time datetime="2024-06-07T11:01:30.000Z" title="Created 2024-06-07 19:01:30">2024-06-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2024/02/05/SpringIOC%E7%9A%84%E7%90%86%E8%A7%A3/" title="SpringIOC的理解">SpringIOC的理解</a><time datetime="2024-02-05T14:26:55.000Z" title="Created 2024-02-05 22:26:55">2024-02-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By cwh</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/bk/js/utils.js"></script><script src="/bk/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="offer" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
