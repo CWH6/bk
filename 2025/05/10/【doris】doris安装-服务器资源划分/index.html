@@ -1,11 +1,13 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【doris】doris安装&amp;服务器资源划分 | ChenWeiHui's Blog</title><meta name="author" content="cwh"><meta name="copyright" content="cwh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="article">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【doris】doris安装&amp;服务器资源划分 | ChenWeiHui's Blog</title><meta name="author" content="cwh"><meta name="copyright" content="cwh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、doris概述 1.1 简介 Apache Doris 由百度大数据部研发,Apache Doris 是一个现代化的 MPP（Massively Parallel Processing，即大规模并行处理）分析型（OLAP）数据库产品。仅需亚秒级响应时间即可获得查询结果，有效地支持实时数据分析。Apache Doris 的分布式架构非常简洁，易于运维，并且可以支持 10PB 以上的超">
+<meta property="og:type" content="article">
 <meta property="og:title" content="【doris】doris安装&amp;服务器资源划分">
 <meta property="og:url" content="https://github.com/CWH6/bk/2025/05/10/%E3%80%90doris%E3%80%91doris%E5%AE%89%E8%A3%85-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%92%E5%88%86/index.html">
 <meta property="og:site_name" content="ChenWeiHui&#39;s Blog">
+<meta property="og:description" content="一、doris概述 1.1 简介 Apache Doris 由百度大数据部研发,Apache Doris 是一个现代化的 MPP（Massively Parallel Processing，即大规模并行处理）分析型（OLAP）数据库产品。仅需亚秒级响应时间即可获得查询结果，有效地支持实时数据分析。Apache Doris 的分布式架构非常简洁，易于运维，并且可以支持 10PB 以上的超">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png">
 <meta property="article:published_time" content="2025-05-10T08:04:41.000Z">
-<meta property="article:modified_time" content="2025-05-10T08:04:41.057Z">
+<meta property="article:modified_time" content="2025-05-10T11:10:08.357Z">
 <meta property="article:author" content="cwh">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png"><link rel="shortcut icon" href="/bk/img/jljy3.png"><link rel="canonical" href="https://github.com/CWH6/bk/2025/05/10/%E3%80%90doris%E3%80%91doris%E5%AE%89%E8%A3%85-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%92%E5%88%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/bk/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
@@ -53,8 +55,8 @@
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2025-05-10 16:04:41'
+  isToc: true,
+  postUpdate: '2025-05-10 19:10:08'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -158,8 +160,448 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/bk/archives/"><div class="headline">Articles</div><div class="length-num">121</div></a><a href="/bk/tags/"><div class="headline">Tags</div><div class="length-num">38</div></a><a href="/bk/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/bk/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/bk/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bk/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/bk/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/bk/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bk/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/bk/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/bk/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/bk/img/alone_blue_sky.jpg')"><nav id="nav"><span id="blog-info"><a href="/bk/" title="ChenWeiHui's Blog"><span class="site-name">ChenWeiHui's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/bk/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/bk/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bk/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/bk/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/bk/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bk/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/bk/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/bk/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【doris】doris安装&amp;服务器资源划分</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-05-10T08:04:41.000Z" title="Created 2025-05-10 16:04:41">2025-05-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-05-10T08:04:41.057Z" title="Updated 2025-05-10 16:04:41">2025-05-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【doris】doris安装&amp;服务器资源划分"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container">
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://github.com/CWH6/bk">cwh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/CWH6/bk/2025/05/10/%E3%80%90doris%E3%80%91doris%E5%AE%89%E8%A3%85-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%92%E5%88%86/">https://github.com/CWH6/bk/2025/05/10/%E3%80%90doris%E3%80%91doris%E5%AE%89%E8%A3%85-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%92%E5%88%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/bk/2025/05/10/%E3%80%90flink%E3%80%91%E5%9F%BA%E4%BA%8Eflink%E5%90%8C%E6%AD%A5mysql%E5%88%B0doris/" title="【flink】基于flink同步mysql表结构数据到doris"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【flink】基于flink同步mysql表结构数据到doris</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png" onerror="this.onerror=null;this.src='/bk/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cwh</div><div class="author-info__description">简单写写,记录代码</div></div><div class="card-info-data site-data is-center"><a href="/bk/archives/"><div class="headline">Articles</div><div class="length-num">121</div></a><a href="/bk/tags/"><div class="headline">Tags</div><div class="length-num">38</div></a><a href="/bk/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><a id="card-info-btn" href="https://github.com/cwh6"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:2747758546@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/wx_self.jpg" target="_blank" title="wx"><i class="fas fa-qq" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">ありがとう、私の暗い世界の小さな太陽、ありがとう、ずっと温めてくれた</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2025/05/10/%E3%80%90doris%E3%80%91doris%E5%AE%89%E8%A3%85-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%92%E5%88%86/" title="【doris】doris安装&amp;服务器资源划分">【doris】doris安装&amp;服务器资源划分</a><time datetime="2025-05-10T08:04:41.000Z" title="Created 2025-05-10 16:04:41">2025-05-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2025/05/10/%E3%80%90flink%E3%80%91%E5%9F%BA%E4%BA%8Eflink%E5%90%8C%E6%AD%A5mysql%E5%88%B0doris/" title="【flink】基于flink同步mysql表结构数据到doris">【flink】基于flink同步mysql表结构数据到doris</a><time datetime="2025-05-10T07:02:53.000Z" title="Created 2025-05-10 15:02:53">2025-05-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2025/03/19/%E3%80%90Vue2%E3%80%91Vue2%E9%9B%86%E6%88%90vue-codemirror%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8%E9%AB%98%E5%85%89/" title="【Vue2】Vue2集成vue-codemirror实现代码编辑器高光">【Vue2】Vue2集成vue-codemirror实现代码编辑器高光</a><time datetime="2025-03-18T16:10:45.000Z" title="Created 2025-03-19 00:10:45">2025-03-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2025/03/18/%E3%80%90Vue2%E3%80%91Vue2%E6%8E%A5%E5%85%A5vue-code-highlight%E7%BB%84%E5%90%88%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E9%AB%98%E5%85%89/" title="【Vue2】Vue2接入vue-code-highlight组合实现代码高光">【Vue2】Vue2接入vue-code-highlight组合实现代码高光</a><time datetime="2025-03-18T14:36:18.000Z" title="Created 2025-03-18 22:36:18">2025-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2025/03/15/%E3%80%90%E4%BA%A4%E6%98%93%E3%80%91%E4%BA%A4%E6%98%93%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%9A%E5%8A%A1/" title="【交易】交易中的策略以及操作">【交易】交易中的策略以及操作</a><time datetime="2025-03-15T08:53:35.000Z" title="Created 2025-03-15 16:53:35">2025-03-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By cwh</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/bk/js/utils.js"></script><script src="/bk/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/bk/archives/"><div class="headline">Articles</div><div class="length-num">121</div></a><a href="/bk/tags/"><div class="headline">Tags</div><div class="length-num">38</div></a><a href="/bk/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/bk/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/bk/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bk/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/bk/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/bk/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bk/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/bk/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/bk/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/bk/img/alone_blue_sky.jpg')"><nav id="nav"><span id="blog-info"><a href="/bk/" title="ChenWeiHui's Blog"><span class="site-name">ChenWeiHui's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/bk/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/bk/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/bk/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/bk/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/bk/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/bk/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/bk/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/bk/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【doris】doris安装&amp;服务器资源划分</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-05-10T08:04:41.000Z" title="Created 2025-05-10 16:04:41">2025-05-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-05-10T11:10:08.357Z" title="Updated 2025-05-10 19:10:08">2025-05-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【doris】doris安装&amp;服务器资源划分"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="一doris概述">一、doris概述</h2>
+<h3 id="简介">1.1 简介</h3>
+<p>Apache Doris 由<strong>百度</strong>大数据部研发,Apache Doris
+是一个现代化的 MPP（Massively Parallel
+Processing，即大规模并行处理）分析型（OLAP）数据库产品。仅需亚秒级响应时间即可获得查询结果，有效地支持<strong>实时数据分析</strong>。Apache
+Doris 的分布式架构非常简洁，易于运维，并且可以支持 10PB
+以上的超大数据集。Apache Doris
+可以满足多种数据分析需求，例如固定历史报表，实时数据分析，交互式数据分析和探索式数据分析等。</p>
+<h3 id="使用场景">1.2 使用场景</h3>
+<p>① 实时看板（Dashboards）</p>
+<p>② 面向企业内部分析师和管理者的报表</p>
+<p>③ 面向用户或者客户的高并发报表分析（Customer Facing
+Analytics）。比如面向网站主的站点分析、面向广告主的广告报表，并发通常要求成千上万的
+QPS ，查询延时要求毫秒级响应。著名的电商公司京东在广告报表中使用 Apache
+Doris ，每天写入 100 亿行数据，查询并发 QPS 上万，99 分位的查询延时
+150ms。</p>
+<h2 id="二前提">二、前提</h2>
+<h3 id="环境准备">2.1 环境准备</h3>
+<h4 id="操作系统">2.1.1 操作系统</h4>
+<p>Linux操作系统版本</p>
+<table>
+<thead>
+<tr>
+<th>Linux系统</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CentOS</td>
+<td>7.1及以上</td>
+</tr>
+<tr>
+<td>Ubuntu</td>
+<td>16.04及以上</td>
+</tr>
+</tbody>
+</table>
+<h4 id="软件需求">2.1.2 软件需求</h4>
+<table>
+<thead>
+<tr>
+<th>软件</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java</td>
+<td>1.8及以上</td>
+</tr>
+<tr>
+<td>GCC</td>
+<td>4.8.2 及以上</td>
+</tr>
+</tbody>
+</table>
+<h4 id="测试环境硬件配置需求">2.1.3 测试环境硬件配置需求</h4>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>CPU</th>
+<th>内存</th>
+<th>硬盘</th>
+<th>网络</th>
+<th>实例数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend</td>
+<td>8核+</td>
+<td>8GB+</td>
+<td>SSD 或SATA, 10GB+</td>
+<td>千兆网卡</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>8核+</td>
+<td>16GB+</td>
+<td>SSD 或者 SATA,50GB+</td>
+<td>千兆网卡</td>
+<td>1~3+</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意：这里需要的资源太顶，测试就改成： 一台FE: 4h8G ，2台BE: 4H8G</p>
+</blockquote>
+<h4 id="生产环境硬件配置需求">2.1.4 生产环境硬件配置需求</h4>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 34%" />
+<col style="width: 11%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr>
+<th>模块</th>
+<th>CPU</th>
+<th>内存</th>
+<th>磁盘</th>
+<th>网络</th>
+<th>实例数量（最低要求）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend</td>
+<td>16核+</td>
+<td>64GB+</td>
+<td>SSD 或 RAID 卡，100GB+ *</td>
+<td>万兆网卡</td>
+<td>1-5 *</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>16核+</td>
+<td>64GB+</td>
+<td>SSD 或 SATA，100G+ *</td>
+<td>万兆网卡</td>
+<td>10-100 *</td>
+</tr>
+</tbody>
+</table>
+<h4 id="案例服务器资源划分">2.1.5 案例：服务器资源划分</h4>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 4%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr>
+<th>服务器</th>
+<th>配置</th>
+<th>服务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>服务器1 (1号机器)</strong></td>
+<td>4H8G</td>
+<td>java环境<br />Doris Be<br />Doirs
+Fe<br />java后端服务<br />nginx服务<br /></td>
+</tr>
+<tr>
+<td><strong>服务器2（2号机器）</strong></td>
+<td>4H8G</td>
+<td>java环境<br />Doris Be<br />Mysql5.7<br /></td>
+</tr>
+<tr>
+<td><strong>服务器3（3号机器）</strong></td>
+<td>4H8G</td>
+<td>java环境<br />Doris Be<br />Flink1.17.1<br /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="端口开放规则">2.1.6 端口开放规则</h4>
+<h5 id="号机器">1号机器</h5>
+<table>
+<thead>
+<tr>
+<th>端口</th>
+<th>服务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9020</td>
+<td>？？？</td>
+</tr>
+<tr>
+<td>8060</td>
+<td>？？？</td>
+</tr>
+<tr>
+<td>8040</td>
+<td><strong>BE HTTP 服务端口</strong>（Backend 监控）</td>
+</tr>
+<tr>
+<td>9060</td>
+<td><strong>FE Thrift RPC 端口</strong>（内部通信）</td>
+</tr>
+<tr>
+<td>9050</td>
+<td><strong>心跳检测端口</strong>（FE ↔︎ BE 通信）</td>
+</tr>
+<tr>
+<td>9030</td>
+<td>doris fe 数据库</td>
+</tr>
+<tr>
+<td>8030</td>
+<td>doris fe webui ，可视化界面</td>
+</tr>
+<tr>
+<td>80</td>
+<td>Web服务HTTP (80)，如 Apache、Nginx</td>
+</tr>
+<tr>
+<td>443</td>
+<td>Web服务HTTPS (443)，如 Apache、Nginx</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Linux SSH登录</td>
+</tr>
+</tbody>
+</table>
+<p>2号机器</p>
+<table>
+<thead>
+<tr>
+<th>端口</th>
+<th>服务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9020</td>
+<td>？？？</td>
+</tr>
+<tr>
+<td>8060</td>
+<td>？？？</td>
+</tr>
+<tr>
+<td>8040</td>
+<td><strong>BE HTTP 服务端口</strong>（Backend 监控）</td>
+</tr>
+<tr>
+<td>9060</td>
+<td><strong>FE Thrift RPC 端口</strong>（内部通信）</td>
+</tr>
+<tr>
+<td>3306</td>
+<td>mysql数据端口</td>
+</tr>
+<tr>
+<td>9030</td>
+<td>doris be 数据访问端口</td>
+</tr>
+<tr>
+<td>80</td>
+<td>Web服务HTTP (80)，如 Apache、Nginx</td>
+</tr>
+<tr>
+<td>443</td>
+<td>Web服务HTTPS (443)，如 Apache、Nginx</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Linux SSH登录</td>
+</tr>
+</tbody>
+</table>
+<p>3号机器</p>
+<table>
+<thead>
+<tr>
+<th>端口</th>
+<th>服务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8081</td>
+<td>flink web界面</td>
+</tr>
+<tr>
+<td>9020</td>
+<td>9020 be rpc 同步</td>
+</tr>
+<tr>
+<td>8060</td>
+<td>？？？</td>
+</tr>
+<tr>
+<td>8040</td>
+<td><strong>BE HTTP 服务端口</strong>（Backend 监控）</td>
+</tr>
+<tr>
+<td>9060</td>
+<td><strong>FE Thrift RPC 端口</strong>（内部通信）</td>
+</tr>
+<tr>
+<td>80</td>
+<td>Web服务HTTP (80)，如 Apache、Nginx</td>
+</tr>
+<tr>
+<td>443</td>
+<td>Web服务HTTPS (443)，如 Apache、Nginx</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Linux SSH登录</td>
+</tr>
+</tbody>
+</table>
+<h4 id="服务器目录划分">2.1.6 服务器目录划分</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1号机器</span></span><br><span class="line">/usr/local/</span><br><span class="line">└── apache-doris-1.2.7.1-bin-x64/</span><br><span class="line">    ├── fe/                 # Frontend服务</span><br><span class="line">    |   ├── bin/            # 可执行脚本</span><br><span class="line">    |   ├── conf/           # 配置文件</span><br><span class="line">    |   ├── lib/            # 依赖库</span><br><span class="line">    |   └── ...             # 其他FE相关文件</span><br><span class="line">    └── be/                 # Backend服务</span><br><span class="line">        ├── bin/            # 可执行脚本</span><br><span class="line">        ├── conf/           # 配置文件</span><br><span class="line">        ├── lib/            # 依赖库</span><br><span class="line">        └── ...             # 其他FE相关文件</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2号机器</span></span><br><span class="line">/usr/local/</span><br><span class="line">└── apache-doris-1.2.7.1-bin-x64/</span><br><span class="line">    └── be/                 # Backend服务</span><br><span class="line">        ├── bin/            # 可执行脚本</span><br><span class="line">        ├── conf/           # 配置文件</span><br><span class="line">        ├── lib/            # 依赖库</span><br><span class="line">        └── ...             # 其他FE相关文件</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3号机器</span></span><br><span class="line">/usr/local/</span><br><span class="line">└── apache-doris-1.2.7.1-bin-x64/</span><br><span class="line">    ├── be/                 # Backend服务</span><br><span class="line">        ├── bin/            # 可执行脚本</span><br><span class="line">        ├── conf/           # 配置文件</span><br><span class="line">        ├── lib/            # 依赖库</span><br><span class="line">        └── ...             # 其他FE相关文件</span><br><span class="line">└── /flink-1.17.1/</span><br><span class="line">        ├── bin/            # 可执行脚本</span><br><span class="line">        ├── conf/           # 配置文件</span><br><span class="line">        ├── lib/            # 依赖库</span><br><span class="line">        ├── log/            # 依赖库</span><br><span class="line">        └── ...             </span><br></pre></td></tr></table></figure>
+<h4 id="安装包">2.1.7 安装包</h4>
+<p><strong>doris-1.2.7.1</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通过网盘分享的文件：doirs-1.2.7.1 安装包</span><br><span class="line">链接: https://pan.baidu.com/s/1fRL3WahQKfKlqih-4dxtBQ 提取码: yyds</span><br></pre></td></tr></table></figure>
+<p><strong>JDK1.8</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通过网盘分享的文件：jdk-8u451-linux-x64.tar.gz</span><br><span class="line">链接: https://pan.baidu.com/s/1RpJJLygIOTl7s_l3QT5R3A 提取码: yyds</span><br></pre></td></tr></table></figure>
+<p>安装教程参考下面：</p>
+<p><strong>Mysql5.7</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通过网盘分享的文件：mysql5.7(linux)</span><br><span class="line">链接: https://pan.baidu.com/s/1gO74TQExsw_3sUpfcMVWCA 提取码: yyds</span><br></pre></td></tr></table></figure>
+<p>参考安装资料：</p>
+<p>（1）安装<a
+target="_blank" rel="noopener" href="https://blog.csdn.net/2401_83730888/article/details/140956427?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7Ebaidujs_baidulandingword%7ECtr-3-140956427-blog-146441574.235%5Ev43%5Epc_blog_bottom_relevance_base5&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7Ebaidujs_baidulandingword%7ECtr-3-140956427-blog-146441574.235%5Ev43%5Epc_blog_bottom_relevance_base5&amp;utm_relevant_index=5">教程1</a></p>
+<p>（2）安装<a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/sunny3158/p/18164326">教程2</a></p>
+<h3 id="安装前服务器配置">2.2 安装前服务器配置</h3>
+<h4 id="脚本安装java环境">2.2.1 脚本安装java环境</h4>
+<p>采用脚本一键配置jdk环境，</p>
+<p><strong>（1）上传脚本 </strong></p>
+<p>将 <code>jdk</code>上传到服务器上 <code>/home/software</code> 上,
+此刻目录结构变成了</p>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/home/software</span><br><span class="line">        |_ jdk_set.sh</span><br><span class="line">        |_ jdk-8u451-linux-x64.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p><strong>（2）创建脚本</strong></p>
+<p>下面为 <code>jdk_set.sh</code> 脚本，该脚本 需要放在
+<code>/home/software</code> 下。</p>
+<p>脚本包含： ① 创建路径； ② 配置环境变量； ③ 刷新环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查Java环境是否已安装</span></span><br><span class="line">java_version=$(java -version 2&gt;&amp;1 | awk -F &#x27;&quot;&#x27; &#x27;/version/ &#123;print $2&#125;&#x27;)</span><br><span class="line">if [[ -n &quot;$&#123;java_version&#125;&quot; ]]; then</span><br><span class="line">    echo &quot;已安装Java开发环境：$&#123;java_version&#125;&quot;</span><br><span class="line">    exit 0</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建Java安装目录</span></span><br><span class="line">mkdir -p /usr/local/java/jdk1.8</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">上传Oracle JDK到指定目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">请将<span class="string">&quot;jdk-8u451-linux-x64.tar.gz&quot;</span>替换为您的实际安装包文件名</span></span><br><span class="line">TARGET_DIR=&quot;/home/software&quot;</span><br><span class="line">INSTALL_PACKAGE=&quot;jdk-8u451-linux-x64.tar.gz&quot;</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查安装包是否存在</span></span><br><span class="line">if [ ! -f &quot;$&#123;TARGET_DIR&#125;/$&#123;INSTALL_PACKAGE&#125;&quot; ]; then</span><br><span class="line">    echo &quot;未找到JDK安装包 $&#123;TARGET_DIR&#125;/$&#123;INSTALL_PACKAGE&#125;，请检查后重试。&quot;</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">cp &quot;$&#123;TARGET_DIR&#125;/$&#123;INSTALL_PACKAGE&#125;&quot; /usr/local/java/jdk1.8</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解压安装Oracle JDK</span></span><br><span class="line">cd /usr/local/java/jdk1.8</span><br><span class="line">tar -zxvf  $&#123;INSTALL_PACKAGE&#125;</span><br><span class="line">mv jdk1.8.0_451/* ./</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置Java环境变量</span></span><br><span class="line">echo &quot;export JAVA_HOME=/usr/local/java/jdk1.8&quot; &gt;&gt; /etc/profile</span><br><span class="line">echo &quot;export PATH=\$PATH:\$JAVA_HOME/bin&quot; &gt;&gt; /etc/profile</span><br><span class="line">echo &quot;export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar&quot; &gt;&gt; /etc/profile</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">刷新环境变量</span></span><br><span class="line">source /etc/profile</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">验证Java安装</span></span><br><span class="line">java -version</span><br><span class="line"> </span><br><span class="line">echo &quot;Java开发环境安装完成！&quot;</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>执行脚本</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入脚本</span></span><br><span class="line">cd /home/software</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看当前software里面有什么</span></span><br><span class="line">ls</span><br><span class="line"></span><br><span class="line">[root@VM-20-12-centos software]# ls</span><br><span class="line">jdk-8u451-linux-x64.tar.gz  jdk_set.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">授予脚本可执行权限</span></span><br><span class="line">chmod +x jdk_set.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行脚本</span> </span><br><span class="line">sudo ./jdk_set.sh</span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>验证安装</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">刷新环境变量（上面脚本这个可能无效）</span></span><br><span class="line">source /etc/profile</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">验证Java安装</span></span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<h2 id="三安装doris">三、安装doris</h2>
+<h3 id="环境配置">3.1 环境配置</h3>
+<h4 id="设置系统最大文件打开句柄数">设置系统最大文件打开句柄数</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. she (永久生效)</span></span><br><span class="line">vi /etc/security/limits.conf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.在文件最后添加下面几行信息T注意*也要复制进去)</span></span><br><span class="line">* soft nofile 65536</span><br><span class="line">* hard nofile 65536</span><br><span class="line">* soft nproc 65536</span><br><span class="line">* hard nproc 65536</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出后，重新登录会话。退出当前终端，重新 SSH 登录</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">验证是否生效（检查当前会话限制）</span></span><br><span class="line">ulimit -n # 应该返回 65536</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启 Doris 服务（如果有安装，使已运行的进程生效）</span></span><br><span class="line">/usr/local/apache-doris-1.2.7.1-bin-x64/be/bin/stop_be.sh</span><br><span class="line">/usr/local/apache-doris-1.2.7.1-bin-x64/be/bin/start_be.sh --daemon </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">---------------------------------【注意】-----------------------------------------</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果不修改这个句柄数大于等于于60000，回头启动doris的be节点的时候就会报如下的错</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果报错:Please <span class="built_in">set</span> the maximum number of open file descriptors to be 65536 using <span class="string">&#x27;ulimit</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">代表句柄数没有生效，需要临时设置或者重启电脑</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">第一次启动的时候可能会报错</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Please set vm,max_map_count to be 2000000 under root using &#x27;</span>sysctl -w vm.max_map_count=20</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解决方案:命令行输入:</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sysctl -w vm.max_map_count=2000000</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">------------------------------------------------------------------------------</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置句柄数 (永久生效)</span></span><br><span class="line">vim /etc/sysctl.conf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在文件最后一行添加</span></span><br><span class="line">vm.max_map_count=2000000</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">让他永久生效</span></span><br><span class="line">sysctl -p</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否生效</span></span><br><span class="line">sysctl -a|grep vm.max_map_count</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果当前服务器配置比较大就不用设置了</p>
+</blockquote>
+<h4 id="时钟同步">时钟同步</h4>
+<p>Doris
+的元数据要求时间精度要小于5000ms，所以所有集群所有机器要进行时钟同步，避免因为时钟问题引发的元数据不一致导致服务出现异常。</p>
+<p>（1）使用finalshell
+批量在三个主机（1号机器，2号机器，3号机器）执行下面命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart chronyd</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这个命令写完之后需要等一会儿才会变为新日期</span></span><br><span class="line">ntpdate time1.aliyun.com</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出结果表明成功了</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">25 Apr 12:03:16 ntpdate[16220]: adjust time server 203.107.6.88 offset -0.004725 sec</span></span><br></pre></td></tr></table></figure>
+<h4 id="关闭交换分区swap">关闭交换分区（swap）</h4>
+<p>交换分区是linux用来当做虚拟内存用的磁盘分区；</p>
+<p>linux可以把一块磁盘分区当做内存来使用（虚拟内存、交换分区）；</p>
+<p>Linux使用交换分区会给Doris带来很严重的性能问题，建议在安装之前禁用交换分区；</p>
+<p>原因： Doris是 <strong>内存密集型</strong>
+的OLAP数据库，依赖高速内存计算。磁盘（即使是SSD）的速度比内存慢
+<strong>100~1000倍</strong>，一旦发生内存交换：① 查询延迟显著增加。②
+BE节点可能因响应超时被FE判定为宕机。</p>
+<p>（1） 关闭交换分区命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、查看 Linux 当前 swap 分区（最后一行大多数值都不为0）</span></span><br><span class="line">free -m</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">效果</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[root@hadoop11 app]<span class="comment"># free -m</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">             total        used        free      shared  buff/cache   available</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Mem:           5840         997        4176           9         666        4604</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Swap:          6015           0        6015</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、关闭 SwaP 分区</span></span><br><span class="line">swapoff -a</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.验证是否关闭成功（最后一行都是0）</span></span><br><span class="line">free -m</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">验证是否关闭成功</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">[root@hadoop11 app]<span class="comment"># free -m</span></span>   </span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Mem:           5840         933        4235           9         671        4667</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Swap:             0           0           0</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装fe">3.2 安装FE</h3>
+<h4 id="下载doris安装包">（1）下载doris安装包</h4>
+<p>安装包参考上面</p>
+<h4 id="创建fe元数据存储的目录">（2）创建fe元数据存储的目录</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /usr/local/apache-doris-1.2.7.1-bin-x64/doris-meta</span><br></pre></td></tr></table></figure>
+<h4 id="上传文件">（3）上传文件</h4>
+<p>apache-doris-1.2.7.1-bin-x64.tar.xz 到 Linux 的
+<code>/usr/local</code></p>
+<h4 id="解压">（4）解压</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local</span><br><span class="line">tar -xvf apache-doris-1.2.7.1-bin-x64.tar.xz</span><br></pre></td></tr></table></figure>
+<h4 id="修改配置文件">（5）修改配置文件</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-- fe.conf文件：位于fe安装目录下的conf目录</span></span><br><span class="line">vim /usr/local/apache-doris-1.2.7.1-bin-x64/fe/conf/fe.conf </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置文件中指定元数据路径： 注意这个文件夹是上面创建，用来存储数据元</span></span><br><span class="line">meta_dir = /usr/local/apache-doris-1.2.7.1-bin-x64/doris-meta/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修改绑定 ip（分发之后，每台机器修改成自己的 ip）</span> </span><br><span class="line">priority_networks = 部署fe节点的机器IP/24</span><br></pre></td></tr></table></figure>
+<h4 id="启动">(6) 启动</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入到fe的bin目录下执行</span></span><br><span class="line">[root@hadoop11 bin]# /usr/local/apache-doris-1.2.7.1-bin-x64/fe/bin/start_fe.sh --daemon</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>生产环境强烈建议单独指定目录不要放在 Doris
+安装目录下，最好是单独的磁盘（如果有 SSD 最好）。 如果机器有多个 ip,
+比如内网外网, 虚拟机 docker 等, 需要进行 ip 绑定，才能正确识别。
+JAVA_OPTS 默认 java 最大堆内存为 4GB，建议生产环境调整至 8G 以上。</p>
+</blockquote>
+<p><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/1745490635279-275a2626-7afb-4891-9c04-fde93dbdf09e.webp" alt="image.png" style="zoom:80%;" /></p>
+<p>如果 FE 启动失败，可以查看对应的 log 日志</p>
+<h3 id="安装be">3.3 安装BE</h3>
+<p>创建 BE 数据存放目录（每个机器上）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/apache-doris-1.2.7.1-bin-x64/doris-storage1</span><br><span class="line">mkdir /usr/local/apache-doris-1.2.7.1-bin-x64/doris-storage2</span><br></pre></td></tr></table></figure>
+<p>进入到be的conf目录下修改配置文</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/apache-doris-1.2.7.1-bin-x64/be/conf/be.conf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">配置文件中指定数据存放路径：</span> </span><br><span class="line">storage_root_path = /usr/local/apache-doris-1.2.7.1-bin-x64/doris-storage1;/usr/local/apache-doris-1.2.7.1-bin-x64/doris-storage2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">修改绑定 ip（每台机器修改成自己的 ip）</span> </span><br><span class="line">priority_networks = 192.168.233.128/24</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">第一次启动的时候可能会报错</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">Please <span class="built_in">set</span> vm.max_map_count to be 2000000 under root using <span class="string">&#x27;sysctl -w vm.max_map_count=2000000&#x27;</span>.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">解决方案：</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">命令行输入：sysctl -w vm.max_map_count=2000000</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">如果报错：Please <span class="built_in">set</span> the maximum number of open file descriptors to be 65536 using <span class="string">&#x27;ulimit -n 65536&#x27;</span>.</span></span><br></pre></td></tr></table></figure>
+<h3 id="fe注册三台be节点">3.4 fe注册三台be节点</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注册三台机器的BE节点</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1号机器</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">ALTER SYSTEM ADD BACKEND <span class="string">&quot;1号机器:9050&quot;</span>;</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2号机器</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">ALTER SYSTEM ADD BACKEND <span class="string">&quot;2号机器:9050&quot;</span>;</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3号机器</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">ALTER SYSTEM ADD BACKEND <span class="string">&quot;3号机器:9050&quot;</span>;</span></span><br></pre></td></tr></table></figure>
+<p>如果删除就用下面的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 删除节点</span><br><span class="line">ALTER SYSTEM DROPP BACKEND &quot;1号机器:9050&quot;;</span><br><span class="line">ALTER SYSTEM DROPP BACKEND &quot;2号机器:9050&quot;;</span><br><span class="line">ALTER SYSTEM DROPP BACKEND &quot;3号机器:9050&quot;;</span><br></pre></td></tr></table></figure>
+<h4 id="启动be">启动BE</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">启动 BE（每个节点） </span><br><span class="line">/usr/local/apache-doris-1.2.7.1-bin-x64/be/bin/start_be.sh --daemon</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">启动后再次查看BE的节点（bigdata01 为1 号机器的节点）</span><br><span class="line">mysql -h fe所在机器IP -P 9030 -uroot -p123456</span><br><span class="line"></span><br><span class="line">SHOW PROC &#x27;/backends&#x27;\G; </span><br><span class="line"></span><br><span class="line">Alive 为 true 表示该 BE 节点存活。</span><br></pre></td></tr></table></figure>
+<h2 id="四其他问题">四、其他问题</h2>
+<h4 id="云服务问题">2.2.3 云服务问题</h4>
+<p>云服务器，be, fe节点的conf文件中国 priority_networks
+设置为公网ip后，Be节点去注册Fe节点 Alive
+会是false，主机不清楚为啥默认用127.0.0.1去作为默认ip发送信息（而不用priority_networks
+设置的公网ip）</p>
+<p>解决方式：</p>
+<p>（1） 云服务器虚拟 IP 的完整配置步骤</p>
+<p>永久绑定虚拟 IP 到网卡（以 CentOS 7
+为例）,云主机的ip默认是127.0.0.1，需要将公网ip映射到网卡里面</p>
+<p>创建虚拟 IP 配置文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/sysconfig/network-scripts/</span><br><span class="line">cp ifcfg-eth0 ifcfg-eth0:0</span><br><span class="line">vim ifcfg-eth0:0</span><br></pre></td></tr></table></figure>
+<p>修改配置文件内容,追加下面内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth0:0</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=当前机器ip(公网ip)</span><br><span class="line">NETMASK=255.255.255.255</span><br></pre></td></tr></table></figure>
+<p>重启网络服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
+<p>验证ip绑定</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ip addr show eth0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出包含内容</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">inet 当前机器公网ip/32 scope global eth0:0</span></span><br></pre></td></tr></table></figure>
+<p>（2）停止对应机器的<code>be</code>节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">简单停止</span></span><br><span class="line">/usr/local/apache-doris-1.2.7.1-bin-x64/be/bin/stop_be.sh </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">命令杀死</span></span><br><span class="line">pkill -9 doris_be</span><br></pre></td></tr></table></figure>
+<p>（3）清除<code>be</code>元数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /usr/local/apache-doris-1.2.7.1-bin-x64/be/storage1/*</span><br><span class="line">rm -rf /usr/local/apache-doris-1.2.7.1-bin-x64/be/storage2/*</span><br></pre></td></tr></table></figure>
+<p>（4）调整配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进到配置文件里面</span></span><br><span class="line">cd /usr/local/apache-doris-1.2.7.1-bin-x64/be/conf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编辑配置文件</span></span><br><span class="line">vim be.conf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在文件最后追加下面内容</span></span><br><span class="line">priority_networks = 所在机器公网ip/32 #有就不用了</span><br><span class="line">brpc_listen_host = 所在机器公网ip</span><br><span class="line">heartbeat_service_host = 所在机器公网ip</span><br><span class="line">listen_address = 所在机器公网ip</span><br></pre></td></tr></table></figure>
+<p>（5）验证be 节点的 9050是否开启</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -tulnp | grep 9050</span><br></pre></td></tr></table></figure>
+<p>（6）启动be的服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/apache-doris-1.2.7.1-bin-x64/be/bin/start_be.sh --daemon</span><br></pre></td></tr></table></figure>
+<ol start="7" type="1">
+<li>来到2号机器，因为有mysql, 第一次不用输密码，回车</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1号机器，因为要连接Fe</span></span><br><span class="line"> mysql -h fe所在的机器ip -P 9030 -uroot -p</span><br></pre></td></tr></table></figure>
+<ol start="8" type="1">
+<li>删除旧的绑定be服务</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果是1号机器</span></span><br><span class="line">ALTER SYSTEM  DROPP BACKEND &quot;1号机器IP:9050&quot;;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果是2号机器</span></span><br><span class="line">ALTER SYSTEM DROPP BACKEND &quot;2号机器IP:9050&quot;;</span><br><span class="line"></span><br><span class="line">ALTER SYSTEM DROPP BACKEND &quot;3号机器IP:9050&quot;;</span><br></pre></td></tr></table></figure>
+<ol start="9" type="1">
+<li>绑定新的服务</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果是1号机器</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">ALTER SYSTEM ADD BACKEND <span class="string">&quot;1号机器ip:9050&quot;</span>;</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果是2号机器</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">ALTER SYSTEM ADD BACKEND <span class="string">&quot;2号机器ip:9050&quot;</span>;</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果是3号机器</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">ALTER SYSTEM ADD BACKEND <span class="string">&quot;3号机器ip:9050&quot;</span>;</span></span><br></pre></td></tr></table></figure>
+<ol start="10" type="1">
+<li>查看be节点信息</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW PROC &#x27;/backends&#x27;\G;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/1745868433755-cfd998eb-29ea-4f04-b0e0-8967c80829ce.png" alt="img" style="zoom:80%;" /></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://github.com/CWH6/bk">cwh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/CWH6/bk/2025/05/10/%E3%80%90doris%E3%80%91doris%E5%AE%89%E8%A3%85-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%92%E5%88%86/">https://github.com/CWH6/bk/2025/05/10/%E3%80%90doris%E3%80%91doris%E5%AE%89%E8%A3%85-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%92%E5%88%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/bk/2025/05/10/%E3%80%90flink%E3%80%91%E5%9F%BA%E4%BA%8Eflink%E5%90%8C%E6%AD%A5mysql%E5%88%B0doris/" title="【flink】基于flink同步mysql表结构数据到doris"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【flink】基于flink同步mysql表结构数据到doris</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/xhs.png" onerror="this.onerror=null;this.src='/bk/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cwh</div><div class="author-info__description">简单写写,记录代码</div></div><div class="card-info-data site-data is-center"><a href="/bk/archives/"><div class="headline">Articles</div><div class="length-num">121</div></a><a href="/bk/tags/"><div class="headline">Tags</div><div class="length-num">38</div></a><a href="/bk/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><a id="card-info-btn" href="https://github.com/cwh6"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:2747758546@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://cwh6-bucket.oss-cn-shanghai.aliyuncs.com/bk/wx_self.jpg" target="_blank" title="wx"><i class="fas fa-qq" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">ありがとう、私の暗い世界の小さな太陽、ありがとう、ずっと温めてくれた</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80doris%E6%A6%82%E8%BF%B0"><span class="toc-text">一、doris概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">1.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">1.2 使用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%89%8D%E6%8F%90"><span class="toc-text">二、前提</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">2.1 环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">2.1.1 操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82"><span class="toc-text">2.1.2 软件需求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE%E9%9C%80%E6%B1%82"><span class="toc-text">2.1.3 测试环境硬件配置需求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E7%A1%AC%E4%BB%B6%E9%85%8D%E7%BD%AE%E9%9C%80%E6%B1%82"><span class="toc-text">2.1.4 生产环境硬件配置需求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%92%E5%88%86"><span class="toc-text">2.1.5 案例：服务器资源划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE%E8%A7%84%E5%88%99"><span class="toc-text">2.1.6 端口开放规则</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%B7%E6%9C%BA%E5%99%A8"><span class="toc-text">1号机器</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%AE%E5%BD%95%E5%88%92%E5%88%86"><span class="toc-text">2.1.6 服务器目录划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">2.1.7 安装包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%89%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="toc-text">2.2 安装前服务器配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83"><span class="toc-text">2.2.1 脚本安装java环境</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%AE%89%E8%A3%85doris"><span class="toc-text">三、安装doris</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">3.1 环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E6%9C%80%E5%A4%A7%E6%96%87%E4%BB%B6%E6%89%93%E5%BC%80%E5%8F%A5%E6%9F%84%E6%95%B0"><span class="toc-text">设置系统最大文件打开句柄数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5"><span class="toc-text">时钟同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BAswap"><span class="toc-text">关闭交换分区（swap）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85fe"><span class="toc-text">3.2 安装FE</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDdoris%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">（1）下载doris安装包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAfe%E5%85%83%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E7%9A%84%E7%9B%AE%E5%BD%95"><span class="toc-text">（2）创建fe元数据存储的目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6"><span class="toc-text">（3）上传文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B"><span class="toc-text">（4）解压</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">（5）修改配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8"><span class="toc-text">(6) 启动</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85be"><span class="toc-text">3.3 安装BE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fe%E6%B3%A8%E5%86%8C%E4%B8%89%E5%8F%B0be%E8%8A%82%E7%82%B9"><span class="toc-text">3.4 fe注册三台be节点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8be"><span class="toc-text">启动BE</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-text">四、其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%91%E6%9C%8D%E5%8A%A1%E9%97%AE%E9%A2%98"><span class="toc-text">2.2.3 云服务问题</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2025/05/10/%E3%80%90doris%E3%80%91doris%E5%AE%89%E8%A3%85-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E5%88%92%E5%88%86/" title="【doris】doris安装&amp;服务器资源划分">【doris】doris安装&amp;服务器资源划分</a><time datetime="2025-05-10T08:04:41.000Z" title="Created 2025-05-10 16:04:41">2025-05-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2025/05/10/%E3%80%90flink%E3%80%91%E5%9F%BA%E4%BA%8Eflink%E5%90%8C%E6%AD%A5mysql%E5%88%B0doris/" title="【flink】基于flink同步mysql表结构数据到doris">【flink】基于flink同步mysql表结构数据到doris</a><time datetime="2025-05-10T07:02:53.000Z" title="Created 2025-05-10 15:02:53">2025-05-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2025/03/19/%E3%80%90Vue2%E3%80%91Vue2%E9%9B%86%E6%88%90vue-codemirror%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8%E9%AB%98%E5%85%89/" title="【Vue2】Vue2集成vue-codemirror实现代码编辑器高光">【Vue2】Vue2集成vue-codemirror实现代码编辑器高光</a><time datetime="2025-03-18T16:10:45.000Z" title="Created 2025-03-19 00:10:45">2025-03-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2025/03/18/%E3%80%90Vue2%E3%80%91Vue2%E6%8E%A5%E5%85%A5vue-code-highlight%E7%BB%84%E5%90%88%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E9%AB%98%E5%85%89/" title="【Vue2】Vue2接入vue-code-highlight组合实现代码高光">【Vue2】Vue2接入vue-code-highlight组合实现代码高光</a><time datetime="2025-03-18T14:36:18.000Z" title="Created 2025-03-18 22:36:18">2025-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/bk/2025/03/15/%E3%80%90%E4%BA%A4%E6%98%93%E3%80%91%E4%BA%A4%E6%98%93%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%9A%E5%8A%A1/" title="【交易】交易中的策略以及操作">【交易】交易中的策略以及操作</a><time datetime="2025-03-15T08:53:35.000Z" title="Created 2025-03-15 16:53:35">2025-03-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By cwh</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/bk/js/utils.js"></script><script src="/bk/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
   window.MathJax = {
     tex: {
       inlineMath: [ ['$','$'], ["\\(","\\)"]],
